@@ -19,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
 import { OrdenComponent } from './menu/orden/orden.component';
 import { ComprasComponent } from './menu/compras/compras.component';
 import { ModificarComponent } from './menu/admin/modificar/modificar.component';
+import { HomeComponent } from './menu/home/home.component';
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
       {path: 'orden', component: OrdenComponent},
       {path: 'compras', component: ComprasComponent},
       {path: 'admin', component:AdminComponent},
+      {path: 'home', component:HomeComponent},
     ]
   },
   { path: 'buscar', component: BuscarComponent },
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     OrdenComponent,
     ComprasComponent,
-    ModificarComponent
+    ModificarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
