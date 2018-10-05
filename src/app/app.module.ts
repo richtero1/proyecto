@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule }          from '@angular/forms';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 
 
 import { AppComponent } from './app.component';
@@ -20,6 +23,7 @@ import { OrdenComponent } from './menu/orden/orden.component';
 import { ComprasComponent } from './menu/compras/compras.component';
 import { ModificarComponent } from './menu/admin/modificar/modificar.component';
 import { HomeComponent } from './menu/home/home.component';
+import { environment } from '../environments/environment.prod';
 
 
 const appRoutes: Routes = [
@@ -64,6 +68,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
 
     RouterModule.forRoot(
       appRoutes,
