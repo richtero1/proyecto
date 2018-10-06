@@ -38,6 +38,12 @@ export class ComprarComponent implements OnInit {
       "precio": 4,
       "imagen": "tequenos",
       
+    },
+    {
+      "nombre":"lole",
+      "precio": 4,
+      "imagen": "tequenos",
+      
     }
   ]
 
