@@ -14,6 +14,10 @@ class Comida {
 })
 export class PagoComponent implements OnInit {
 
+  Pagar(){
+    
+  }
+
   arreglo: Array<Comida> =
   [
     {

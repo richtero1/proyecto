@@ -14,6 +14,9 @@ class Comida {
 })
 export class CarritoComponent implements OnInit {
 
+    Agregar(){
+      
+    }
   arreglo: Array<Comida> =
   [
     {

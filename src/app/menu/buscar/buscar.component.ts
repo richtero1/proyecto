@@ -14,6 +14,10 @@ class Comida {
 })
 export class BuscarComponent implements OnInit {
 
+  Buscar(){
+
+  }
+  
   arreglo: Array<Comida> =
   [
     {

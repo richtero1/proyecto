@@ -12,7 +12,7 @@ class Comida {
   styleUrls: ['./comprar.component.css']
 })
 export class ComprarComponent implements OnInit {
-
+ 
   Agregar() {
     
   }
