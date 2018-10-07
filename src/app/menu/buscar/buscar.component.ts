@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-
+class Comida {
+  nombre: string;
+  precio: number;
+  imagen: string;
+  disponibilidad: boolean;
+}
 
 @Component({
   selector: 'app-buscar',
@@ -9,10 +14,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscarComponent implements OnInit {
 
+  arreglo: Array<Comida> =
+  [
+    {
+      "nombre":"Hamburguesa",
+      "precio": 5,
+      "imagen": "hamburguesa",
+      "disponibilidad": true,
+    },
+    {
+      "nombre":"Pizza",
+      "precio": 10,
+      "imagen": "pizza",
+      "disponibilidad": true,
+    },
+    {
+      "nombre":"Papas",
+      "precio": 2,
+      "imagen": "papas",
+      "disponibilidad": true,
+    },
+    {
+      "nombre":"Tequeños",
+      "precio": 4,
+      "imagen": "tequenos",
+      "disponibilidad": true,
+    },
+    {
+      "nombre":"Tequeños",
+      "precio": 4,
+      "imagen": "tequenos",
+      "disponibilidad": true,
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {
-
+  
   	
   }
 

@@ -11,7 +11,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { MenuComponent } from './menu/menu.component';
-import { PagoComponent } from './pago/pago.component';
+import { PagoComponent } from './menu/pago/pago.component';
 import { BuscarComponent } from './menu/buscar/buscar.component';
 import { CarritoComponent } from './menu/carrito/carrito.component';
 import { ComprarComponent } from './menu/comprar/comprar.component';
@@ -29,7 +29,7 @@ import { environment } from '../environments/environment.prod';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full'},
   { path: 'inicio', component: InicioComponent },
-  { path: 'pago', component: PagoComponent },
+  
   { path: 'menu', component: MenuComponent,
     children: [
       {path: 'comprar', component: ComprarComponent},
@@ -40,6 +40,7 @@ const appRoutes: Routes = [
       {path: 'compras', component: ComprasComponent},
       {path: 'admin', component:AdminComponent},
       {path: 'home', component:HomeComponent},
+      { path: 'pago', component: PagoComponent },
     ]
   },
   { path: 'buscar', component: BuscarComponent },
