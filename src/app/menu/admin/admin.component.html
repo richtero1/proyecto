@@ -47,17 +47,20 @@
 <br>
 
 <div class="row">
-    <div class="col-sm-4" *ngFor="let comida of arreglo">
-        <div class="card" style="width:250px; height: 400px">
+    <div class="col-sm-4 " *ngFor="let comida of arreglo">
+        <div class="card shadow" style="width:250px; height: 400px">
             <img class="card-img-top" src="assets/{{comida.imagen}}.png" alt="Card image" >
             <hr>
-            <div class="card-body">
+            <div class="card-body text-center">
                 <h4 class="card-title">{{comida.nombre}}</h4>
-                <div class="text-center"><app-modificar></app-modificar> </div>
+                <div><app-modificar></app-modificar> </div>
                 <br>
-                <div class="text-center"><app-eliminar></app-eliminar></div>
-                
+                <div><app-eliminar></app-eliminar></div>
+               
             </div>
-        </div>        
-    </div>    
+           
+        </div>   
+        <br>     
+    </div>   
+    <br> 
 </div>

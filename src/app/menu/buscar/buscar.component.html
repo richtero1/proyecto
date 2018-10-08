@@ -1,14 +1,14 @@
 <div class="container mt-3">
     <h2>Tabla de Productos</h2>
     <p>Typee el producto que quiere buscar</p>  
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <input class="form-control shadow" id="myInput" type="text" placeholder="Search..">
     <br>
     <div>
-        <table class="table table-bordered">
+        <table class="table table-bordered shadow">
           <thead>
               <tr>
                   <th>
-                    Imagen yeah
+                    Imagen 
                   </th>
                   <th>
                     Nombre
@@ -22,9 +22,9 @@
                 </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let comida of arreglo" class="text-center">
+          <tr *ngFor="let comida of arreglo" class="text-center ">
             <td>
-              <img class="card-img-top" src="assets/{{comida.imagen}}.png" alt="Card image" style="width: 100px;height: 100px">
+              <img class="card-img-top " src="assets/{{comida.imagen}}.png" alt="Card image" style="width: 100px;height: 100px">
             </td>
             <td>
               {{comida.nombre}}
