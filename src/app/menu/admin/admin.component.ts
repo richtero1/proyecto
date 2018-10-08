@@ -36,12 +36,6 @@ export class AdminComponent implements OnInit {
       "precio": 4,
       "imagen": "tequenos",
       
-    },
-    {
-      "nombre":"lole",
-      "precio": 4,
-      "imagen": "tequenos",
-      
     }
   ]
   constructor() { }
