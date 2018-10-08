@@ -44,9 +44,9 @@ export class CarritoComponent implements OnInit {
       "cantidad":1,
     },
     {
-      "nombre":"Tequeños",
+      "nombre":"Daniel",
       "precio": 4,
-      "imagen": "tequenos",
+      "imagen": "hamburguesa",
       "cantidad":1,
     }
   ]

@@ -13,10 +13,8 @@ class Comida {
 })
 export class ComprarComponent implements OnInit {
  
-  Agregar() {
-    
-  }
-
+  
+  
   arreglo: Array<Comida> =
   [
     {
