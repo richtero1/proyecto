@@ -14,9 +14,10 @@ class Comida {
 })
 export class BuscarComponent implements OnInit {
 
-  Buscar(){
+  verdadero: string= "si";
+  falso: string = "no";
 
-  }
+  
   
   arreglo: Array<Comida> =
   [
@@ -24,7 +25,7 @@ export class BuscarComponent implements OnInit {
       "nombre":"Hamburguesa",
       "precio": 5,
       "imagen": "hamburguesa",
-      "disponibilidad": true,
+      "disponibilidad": false,
     },
     {
       "nombre":"Pizza",

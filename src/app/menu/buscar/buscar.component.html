@@ -8,7 +8,7 @@
           <thead>
               <tr>
                   <th>
-                    Imagen yeah
+                    Imagen
                   </th>
                   <th>
                     Nombre
@@ -32,12 +32,17 @@
             <td>
               {{comida.precio}}
             </td>
-            <td>
-                {{comida.disponibilidad}}
+            <td *ngIf="comida.disponibilidad; else falso">
+                Si
             </td>
+
           </tr>
         </tbody>
         </table>
       </div>
   
 </div>
+
+<ng-template #falso>
+  No
+</ng-template>
