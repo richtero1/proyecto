@@ -1,7 +1,41 @@
-/* .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: red;
+/* not active */
+.nav-pills .pill-1 .nav-link:not(.active) {
+    background-color: rgba(255, 255, 255);
 }
-.btn-primary {
-    background: #dd198c;
-    color: #ffffff;
-} */
+
+.nav-pills .pill-2 .nav-link:not(.active) {
+    background-color: rgba(255, 255, 255);
+}
+
+.nav-pills .pill-3 .nav-link:not(.active) {
+    background-color: rgb(255, 255, 255);
+}
+
+.nav-pills .pill-4 .nav-link:not(.active) {
+    background-color: rgb(255, 255, 255);
+}
+
+.nav-pills .pill-5 .nav-link:not(.active) {
+    background-color: rgb(255, 255, 255);
+}
+
+/* active (faded) */
+.nav-pills .pill-1 .nav-link {
+    background-color: rgba(255, 0, 0);
+}
+
+.nav-pills .pill-2 .nav-link {
+    background-color: rgba(0, 153, 0);
+}
+
+.nav-pills .pill-3 .nav-link {
+    background-color: rgba(0, 120, 220);
+}
+
+.nav-pills .pill-4 .nav-link {
+    background-color: rgb(255, 153, 0);
+}
+
+.nav-pills .pill-5 .nav-link {
+    background-color: rgb(0, 204, 255);
+}
