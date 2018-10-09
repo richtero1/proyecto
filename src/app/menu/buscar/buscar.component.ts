@@ -17,7 +17,7 @@ export class BuscarComponent implements OnInit {
   verdadero: string= "si";
   falso: string = "no";
 
-
+  
   
   arreglo: Array<Comida> =
   [
