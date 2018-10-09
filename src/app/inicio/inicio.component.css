@@ -1,7 +1,13 @@
-/* .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: red;
-}
-.btn-primary {
-    background: #dd198c;
-    color: #ffffff;
+/* .bg {
+    background: url('https://st2.depositphotos.com/4624013/12375/i/950/depositphotos_123750520-stock-photo-italian-food-ingredients-on-stone.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height: 100%; 
+
+    Center and scale the image nicely
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 } */
