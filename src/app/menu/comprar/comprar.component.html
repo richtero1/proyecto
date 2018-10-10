@@ -1,16 +1,26 @@
 <div class="row" >
     
     <div class="col-sm-6" *ngFor="let comida of arreglo">
-        <div class="card shadow" style="width:300px; height: 375px">
+      
+        <div class="card shadow" style="width:100%; height: 100%">
             <div class="card-body">
                 <img class="card-img-top" src="assets/{{comida.imagen}}.png" alt="Card image" >
                 <hr>
                 <h4 class="card-title">{{ comida.nombre }}</h4>
                 <p class="card-text">{{ comida.precio }} $</p>
                 <button class="btn btn-primary" >Añadir a carrito</button>
-            </div> 
+                <a class="btn btn-primary" style="position:absolute;left:60%" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Modificar
+                </a>
+            </div>
+            <div class="collapse" id="{{comida.nombre}}">
+                <div class="card-text">
+                    <hr>
+                    <h4>Ingredientes</h4>
+                </div>
+            </div>
         </div>
-        <br>
+        
     </div>
 </div>
 

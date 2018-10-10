@@ -1,4 +1,10 @@
-<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#miModal">Agrega nuevo Plato</button>
+
+
+<div class="text-center"><button type="button" class="btn btn-success btn-circle btn-xl "data-toggle="modal" data-target="#miModal"><i class="fa fa-plus"></i>
+</button>
+</div>
+
+
 <div class="modal fade" id="miModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -53,9 +59,16 @@
             <hr>
             <div class="card-body text-center">
                 <h4 class="card-title">{{comida.nombre}}</h4>
-                <div><app-modificar></app-modificar> </div>
-                <br>
-                <div><app-eliminar></app-eliminar></div>
+                <div class="row">
+                    <div class="col sm-4 text-center">
+                            <app-modificar></app-modificar> 
+                    </div>
+                    <div class="col sm-4 text-center"><app-eliminar></app-eliminar>
+                    </div>
+                </div>
+                
+                
+                
                
             </div>
            
