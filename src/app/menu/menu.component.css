@@ -1,6 +1,6 @@
-body{
-    background: black;
-}
+
+body { background: navy !important; }
+
 
 /* not active */
 .nav-pills .pill-1 .nav-link:not(.active) {
