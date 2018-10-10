@@ -56,13 +56,23 @@
                     <hr>
                     <form>
                         <div class="form-group">
-                        <label>Direccion:</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su Direccion" required>
+                            <label>Direccion:</label>
+                            <input type="text" class="form-control" placeholder="Ingrese su Direccion" required>
                         </div>
                         <div class="form-group">
-                            
+                            <label for="">Urbanizacion</label>
+                                <select class="custom-select" id="inputGroupSelect01">
+                                        <option selected>------</option>
+                                        <option value="4">Santa Eduvigis</option>
+                                        <option value="1">Sebucan</option>
+                                        <option value="2">Los Palos Grandes</option>
+                                        <option value="3">Altamira</option>
+                                </select>
                         </div>
-                    
+                        <div class="form-group">
+                                <label>Telefono:</label>
+                                <input type="number" class="form-control" placeholder="Ingrese su Telefono" required>
+                        </div>
                         <div class="text-center">
                             <button type="button" class="btn btn-warning">Pagar</button>
                         </div>

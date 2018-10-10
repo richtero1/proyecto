@@ -6,19 +6,22 @@
             <div class="card-body">
                 <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
                 <hr>
-                
                 <h4 class="card-title">{{ comida.nombre }}</h4>
                 <p class="card-text">{{ comida.precio }} $</p>
                 <button class="btn btn-primary (click)=Prueba()" >Añadir a carrito</button>
-                
                 <br><br>
-                <a class="btn btn-primary" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Modificar
-                </a>
+                <div class="input-group mb-3">
+                    <div class="col-sm-2"><a class="btn btn-primary btn-circle btn-sm" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="col-sm-4"> <h5>      Extra</h5>
+                    </div>
+                </div>
             </div>
             <div class="collapse" id="{{comida.nombre}}">
                 <div class="card-text">
-                    <h4 style="position: relative;left:15%;">Extras:</h4>
+                    
                     <form>
                             <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes">
                               <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
