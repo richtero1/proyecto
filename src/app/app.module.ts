@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule }          from '@angular/forms';
 
-
+// import { AngularFirestore } from '@angular/fire/firestore';
+// import {AngularFirestoreModule} from 'angularfire2/firestore'
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireModule} from 'angularfire2'
 
 
 
@@ -68,6 +71,11 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestore,
+    // AngularFirestoreModule,
+
     
 
     RouterModule.forRoot(
