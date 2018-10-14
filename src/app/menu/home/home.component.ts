@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Comida } from '../../comida'
+import { ComidaService } from '../../comida.service'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  comidas: Comida[];
+
+  constructor(public comidaService : ComidaService) { }
 
   ngOnInit() {
+    this.comidaService.getComidas().subscribe(comidas => {
+      this.comidas = comidas;
+    })
   }
 
 }

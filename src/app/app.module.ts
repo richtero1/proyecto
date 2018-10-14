@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule }          from '@angular/forms';
 
-import { AngularFirestore } from '@angular/fire/firestore';
-import {AngularFirestoreModule} from '@angular/fire/firestore'
-import {AngularFireModule} from '@angular/fire'
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+
+import { ComidaService } from './comida.service';
 
 
 
@@ -71,8 +72,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
 
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestore,
+    AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),
+    
     AngularFirestoreModule,
 
     
@@ -83,7 +84,7 @@ const appRoutes: Routes = [
     )
     
   ],
-  providers: [],
+  providers: [ComidaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

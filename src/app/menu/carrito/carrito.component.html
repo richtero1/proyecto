@@ -12,27 +12,27 @@
             </tr>
         </thead>
         <tbody id="Table">
-            <tr *ngFor="let comida of arreglo" class="text-center">
+            <tr *ngFor="let carrito of carritos" class="text-center">
                 <td>
-                  <img class="card-img-top" src="assets/{{comida.imagen}}.png" alt="Card image" style="width: 100px;height: 100px">
+                  <img class="card-img-top" src="{{carrito.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
                 </td>
                 <td>
-                  {{comida.nombre}}
+                  {{carrito.nombre}}
                 </td>
                 <td>
-                  {{comida.precio}} $
+                  {{carrito.precio}} $
                 </td>
                 <td>
-                    {{comida.cantidad}}
+                    {{carrito.cantidad}}
                 </td>
                 <td>
                        <app-eliminar></app-eliminar> 
                        <br>
-                       <a class="btn btn-primary btn-circle btn" data-toggle="modal" href="#{{comida.nombre}}" role="button" >
+                       <a class="btn btn-primary btn-circle btn" data-toggle="modal" href="#{{carrito.nombre}}" role="button" >
                             <i class="fa fa-plus"></i>
                         </a>
                         <!-- The Modal -->
-          <div class="modal fade" id="{{comida.nombre}}">
+          <div class="modal fade" id="{{carrito.nombre}}">
                 <div class="modal-dialog">
                   <div class="modal-content">
     
@@ -43,7 +43,7 @@
                     </div>
     
                     <!-- Modal body -->
-                    <div class="modal-body">
+                    <!-- <div class="modal-body">
                             <form>
                                     <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes" >
                                       <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
@@ -51,7 +51,7 @@
                                       <br>
                                     </div>
                             </form>
-                    </div>
+                    </div> -->
     
                     <!-- Modal footer -->
                     <div class="modal-footer">

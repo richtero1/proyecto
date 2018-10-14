@@ -1,5 +1,7 @@
-<div class="text-center"><button type="button" class="btn btn-success btn-circle btn-xl "data-toggle="modal" data-target="#miModal"><i class="fa fa-plus"></i>
-</button>
+<div class="text-center">
+    <button type="button" class="btn btn-success btn-circle btn-xl "data-toggle="modal" data-target="#miModal">
+        <i class="fa fa-plus"></i>
+    </button>
 </div>
 
 
@@ -9,7 +11,7 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Agregar Nuevo Plato</h4>
+          <h4 class="modal-title">Agregar Nueva Comida</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -17,23 +19,28 @@
         <div class="modal-body">
             <h6>Indique que datos del Plato</h6>
             
-            <form>
-                <div class="custom-file">
+            <form (ngSubmit)="onSubmit()">
+                <!-- <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile">
                     <label class="custom-file-label" for="customFile">Imagen</label>
-                </div>
+                </div> -->
+
+                <div class="form-group">
+                        <br>
+                          <label>Imagen:</label>
+                          <input type="text" class="form-control" placeholder="Ingrese Imagen" [(ngModel)]="comida.photoUrl" name="imagen" required="true">
+                      </div>
                 
                 <div class="form-group">
                   <br>
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" placeholder="Ingrese Nombre" name="comida" required="true">
+                    <input type="text" class="form-control" placeholder="Ingrese Nombre" [(ngModel)]="comida.nombre" name="nombre" required="true">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Precio:</label>
-                    <input type="number" class="form-control" placeholder="Ingrese precio" name="price" required>
-                
+                    <input type="number" class="form-control" placeholder="Ingrese precio" [(ngModel)]="comida.precio" name="precio" required>
                 </div>
-                
+                <input type="submit" class="btn btn-success">
             </form>
         </div>
 
@@ -51,7 +58,7 @@
 <br>
 
 <div class="row">
-    <div class="col-sm-4 " *ngFor="let comida of arreglo">
+    <div class="col-sm-4 " *ngFor="let comida of comidas">
         <div class="card shadow" style="width:90%; height: 90%;">
             <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
             <hr>
@@ -60,10 +67,36 @@
                 <br>
                 <div class="row">
                     <div class="col sm-4 text-center">
-                            <app-modificar></app-modificar> 
+                        <div class="text-center">
+                            <button type="button" class="btn btn-info btn-circle btn-xl">
+                                <i class="fa fa-wrench" (click)="editComida($event, comida)"></i>
+                            </button>
+                            <div *ngIf="editState && comidaToEdit.id === comida.id">
+                                <form (ngSubmit)="updateComida(comida)">
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="nombre" placeholder="Edit Title" [(ngModel)]="comida.nombre">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="precio" placeholder="Editar precio" [(ngModel)]="comida.precio">
+                                            </div>
+                                                <input type="submit" class="btn btn-success" value="Update Task">
+                                                <br>
+                                                <button class="btn btn-danger" (click)="deleteComida($event, comida)">Eliminar Comida</button>
+                                        </div>                                      
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
                     </div>
                     <div class="col sm-4 text-center">
-                        <app-eliminar></app-eliminar>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-danger btn-circle btn-lg">
+                                    <i class="fa fa-times" (click)="deleteComida($event, comida)"></i>
+                                </button>
+                            </div>
                     </div>
                 </div>
             </div>

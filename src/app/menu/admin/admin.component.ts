@@ -1,55 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 
-class Comida {
-  nombre: string;
-  precio: number;
-  imagen: string;
-  photoUrl: string;
-}
+import { Comida } from '../../comida'
+import { ComidaService } from '../../comida.service'
+
+
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  arreglo: Array<Comida> =
-  [
-    {
-      "nombre":"Hamburguesa",
-      "precio": 5,
-      "imagen": "hamburguesa",
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/hamburguesa.png?alt=media&token=b6219af5-2794-4dae-ae76-56ba5d600d1f",
 
-    },
-    {
-      "nombre":"Pizza",
-      "precio": 10,
-      "imagen": "pizza",
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/pizza.png?alt=media&token=c45edf24-bbc3-4399-b410-c10bedcd865f",
+  comidas: Comida[];
+  editState: boolean = false;
+  comidaToEdit: Comida;
 
-      
-    },
-    {
-      "nombre":"Papas",
-      "precio": 2,
-      "imagen": "papas",
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/papas.png?alt=media&token=d98bc526-c09d-445b-8345-a87725f9d896",
+  comida: Comida = {
+    nombre: '',
+    precio: null,
+    photoUrl:''
+  };
 
-    },
-    {
-      "nombre":"Tequeños",
-      "precio": 4,
-      "imagen": "tequenos",
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/tequenos.png?alt=media&token=06bd0c5b-bc92-4cfd-9305-0c455200e7df",
-
-    }
-  ]
-  constructor() { }
+  constructor(public comidaService : ComidaService) { }
 
   ngOnInit() {
-    this.arreglo.forEach((comida: Comida)=>{
-      console.log("Comida",comida) 
+    this.comidaService.getComidas().subscribe(comidas => {
+      this.comidas = comidas;
+      console.log(comidas);
     })
   }
 
+  onSubmit(){
+    if(this.comida.nombre != '' && this.comida.precio != null && this.comida.photoUrl != ''){
+        this.comidaService.addComida(this.comida);
+        this.comida.nombre = '';
+        this.comida.precio = null;
+        this.comida.photoUrl = '';
+    }
+  }
+
+  deleteComida(event, comida) {
+    const response = confirm('Estas seguro que quieres eliminar este producto?');
+    if (response ) {
+      this.comidaService.deleteComida(comida);
+    }
+    return;
+  }
+
+  editComida(event, comida) {
+    this.editState = !this.editState;
+    this.comidaToEdit = comida;
+  }
+
+  updateComida(comida) {
+    this.comidaService.updateComida(comida);
+    this.comidaToEdit = null;
+    this.editState = false;
+  }
+
+  
 }

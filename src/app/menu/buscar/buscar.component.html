@@ -22,9 +22,9 @@
                 </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let comida of arreglo" class="text-center ">
+          <tr *ngFor="let comida of comidas" class="text-center ">
             <td>
-              <img class="card-img-top " src="assets/{{comida.imagen}}.png" alt="Card image" style="width: 100px;height: 100px">
+              <img class="card-img-top " src="{{comida.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
             </td>
             <td>
               {{comida.nombre}}

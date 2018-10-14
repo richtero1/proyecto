@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-class Comida {
-  nombre: string;
-  precio: number;
-  imagen: string;
-  cantidad: number;
-  photoUrl: string;
-  ingredientes: string[];
-}
+import { Comida } from '../../comida';
+
+import { Carrito } from '../../carrito';
+import { CarritoService } from '../../carrito.service';
 
 @Component({
   selector: 'app-carrito',
@@ -16,47 +12,53 @@ class Comida {
 })
 export class CarritoComponent implements OnInit {
 
-  
-  arreglo: Array<Comida> =
-  [
-    {
-      "nombre":"Hamburguesa",
-      "precio": 5,
-      "imagen": "hamburguesa",
-      "cantidad":1,
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/hamburguesa.png?alt=media&token=b6219af5-2794-4dae-ae76-56ba5d600d1f",
-      "ingredientes": ["Papitas","Bebida"],
-    },
-    {
-      "nombre":"Pizza",
-      "precio": 10,
-      "imagen": "pizza",
-      "cantidad":2,
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/hamburguesa.png?alt=media&token=b6219af5-2794-4dae-ae76-56ba5d600d1f",
-      "ingredientes": ["Queso","Peperoni","Jamon"],
-    },
-    {
-      "nombre":"Papas",
-      "precio": 2,
-      "imagen": "papas",
-      "cantidad":2,
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/hamburguesa.png?alt=media&token=b6219af5-2794-4dae-ae76-56ba5d600d1f",
-      "ingredientes": ["Pequenas","Medianas","Grandes"],
-    },
-    {
-      "nombre":"Tequeños",
-      "precio": 4,
-      "imagen": "tequenos",
-      "cantidad":1,
-      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/umakeit-44464.appspot.com/o/hamburguesa.png?alt=media&token=b6219af5-2794-4dae-ae76-56ba5d600d1f",
-      "ingredientes": ["Salsa de Tomate","Rellenos de Chocolate"],
-    }
-  ]
+  comidas: Comida[];
 
-  constructor() { }
+  carritos: Carrito[];
+  editState: boolean = false;
+  carritoToEdit: Comida;
+
+  carrito: Carrito = {
+    nombre: '',
+    precio: null,
+    photoUrl:'',
+    cantidad:null
+  };
+
+  constructor(public carritoService : CarritoService) { }
 
   ngOnInit() {
-  
+    this.carritoService.getTasks().subscribe(carritos => {
+      this.carritos = carritos;
+    })
+  }
+
+  onSubmit(){
+    if(this.carrito.nombre != '' && this.carrito.precio != null && this.carrito.photoUrl != ''){
+        this.carritoService.addTask(this.carrito);
+        this.carrito.nombre = '';
+        this.carrito.precio = null;
+        this.carrito.photoUrl = '';
+    }
+  }
+
+  deleteTask(event, carrito) {
+    const response = confirm('Estas seguro que quieres eliminar este producto?');
+    if (response ) {
+      this.carritoService.deleteTask(carrito);
+    }
+    return;
+  }
+
+  editTask(event, carrito) {
+    this.editState = !this.editState;
+    this.carritoToEdit = carrito;
+  }
+
+  updateTask(carrito) {
+    this.carritoService.updateTask(carrito);
+    this.carritoToEdit = null;
+    this.editState = false;
   }
 
 }
