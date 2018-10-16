@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Comida } from '../../comida';
+import { ComidaService } from '../../comida.service';
 
 import { Carrito } from '../../carrito';
 import { CarritoService } from '../../carrito.service';
@@ -25,12 +26,16 @@ export class CarritoComponent implements OnInit {
     cantidad:null
   };
 
-  constructor(public carritoService : CarritoService) { }
+  constructor(public carritoService : CarritoService, public comidaService: ComidaService) { }
 
   ngOnInit() {
     this.carritoService.getTasks().subscribe(carritos => {
       this.carritos = carritos;
     })
+
+    this.comidaService.getComidas().subscribe(comidas => {
+      this.comidas = comidas;
+    });
   }
 
   onSubmit(){

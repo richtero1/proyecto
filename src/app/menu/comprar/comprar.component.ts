@@ -26,7 +26,9 @@ export class ComprarComponent implements OnInit {
     cantidad:null
   };
 
+  comida: Comida;
 
+  comidaselected: Comida;
 
   constructor(public comidaService : ComidaService, public carritoService : CarritoService) {  }
 
@@ -38,17 +40,33 @@ export class ComprarComponent implements OnInit {
     this.carritoService.getTasks().subscribe(carritos => {
       this.carritos = carritos;
     });
+    console.log(this.comida);
+  }
 
+  selectedComida(comida){
+    this.comidaselected=comida;
+    
   }
 
   onSubmit(){
     if(this.carrito.nombre != '' && this.carrito.precio != null && this.carrito.photoUrl != '' ){
         // this.carritoService.carritoCollection.add();
+
+        this.comidaselected=this.comida;
+
+        this.carrito=this.comidaselected;
+        this.carritos.push(this.carrito);
         this.carritoService.addTask(this.carrito);
+
+        this.comidaselected.nombre = '';
+        this.comidaselected.precio = null;
+        this.comidaselected.photoUrl = '';
+
         this.carrito.nombre = '';
         this.carrito.precio = null;
         this.carrito.photoUrl = '';
     }
+    console.log(this.carritos);
   }
 
 

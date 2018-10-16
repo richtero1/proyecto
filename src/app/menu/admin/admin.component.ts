@@ -43,7 +43,7 @@ export class AdminComponent implements OnInit {
   deleteComida(event, comida) {
     const response = confirm('Estas seguro que quieres eliminar este producto?');
     if (response ) {
-      this.comidaService.deleteComida(comida);
+      this.comidaService.disableComida(comida);
     }
     return;
   }

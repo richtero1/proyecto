@@ -50,4 +50,11 @@ export class ComidaService {
     this.comidaDoc.update(comida);
   }
 
+  disableComida(comida: Comida){
+    this.comidaDoc = this.afs.doc(`comidas/${comida.id}`);
+    if(comida.disponibilidad){
+      
+    }
+  }
+
 }

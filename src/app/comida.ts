@@ -5,4 +5,5 @@ export interface Comida {
     photoUrl?: string;
     disponibilidad?: boolean;
     cantidad?: number;
+    ingredientes?: string[];
 }

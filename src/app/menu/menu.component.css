@@ -25,21 +25,21 @@ body { background: navy !important; }
 
 /* active (faded) */
 .nav-pills .pill-1 .nav-link {
-    background-color: rgba(255, 0, 0);
+    background-color: rgba(217,83,79);
 }
 
 .nav-pills .pill-2 .nav-link {
-    background-color: rgba(0, 153, 0);
+    background-color: rgba(217,83,79);
 }
 
 .nav-pills .pill-3 .nav-link {
-    background-color: rgba(0, 120, 220);
+    background-color: rgba(217,83,79);
 }
 
 .nav-pills .pill-4 .nav-link {
-    background-color: rgb(255, 153, 0);
+    background-color: rgba(217,83,79);
 }
 
 .nav-pills .pill-5 .nav-link {
-    background-color: rgb(0, 204, 255);
+    background-color: rgba(217,83,79);
 }
