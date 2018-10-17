@@ -4,21 +4,24 @@
           
             <div class="card shadow" style="width:90%; height: 90%">
                 <div class="card-body">
-                    <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
-                    <hr>
-                    <h4 class="card-title">{{ comida.nombre }}</h4>
-                    <p class="card-text">{{ comida.precio }} $</p>
-                    <form (click)="onSubmit()" (click)="selectedComida(comida)">
-
-                        <div *ngIf="comida==comidaselected">
-                                <label for="">{{carrito.nombre}}</label>
-                        </div>
-                        
-                        <button class="btn btn-primary " >Añadir a carrito</button>
-                        <!-- <input type="submit" class="btn btn-primary" > -->
-                    </form>
+                    <div class="text-center">
+                            <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
+                            <hr>
+                            <h4 class="card-title">{{ comida.nombre }}</h4>
+                            <p class="card-text">{{ comida.precio }} $</p>
+                            <form (click)="onSubmit()" (click)="selectedComida(comida)">
+        
+                                <div *ngIf="comida==comidaselected">
+                                        <label for="">{{carrito.nombre}}</label>
+                                </div>
+                                
+                                <button class="btn btn-primary " >Añadir a carrito</button>
+                                <!-- <input type="submit" class="btn btn-primary" > -->
+                            </form>
+                            
+                            <br><br>
+                    </div>
                     
-                    <br><br>
                     <div class="input-group mb-3">
                         <div class="col-sm-2"><a class="btn btn-primary btn-circle btn" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="fa fa-plus"></i>

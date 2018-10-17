@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.comidaService.getComidas().subscribe(comidas => {
       this.comidas = comidas;
-      console.log(comidas);
+      console.log(this.comidas);
     })
   }
 
@@ -37,13 +37,14 @@ export class AdminComponent implements OnInit {
         this.comida.nombre = '';
         this.comida.precio = null;
         this.comida.photoUrl = '';
+        console.log(this.comidas);
     }
   }
 
   deleteComida(event, comida) {
     const response = confirm('Estas seguro que quieres eliminar este producto?');
     if (response ) {
-      this.comidaService.disableComida(comida);
+      this.comidaService.deleteComida(comida);
     }
     return;
   }

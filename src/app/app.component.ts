@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	
+  ngOnInit() {
+    
+      console.log("4");
   
+  }
 }

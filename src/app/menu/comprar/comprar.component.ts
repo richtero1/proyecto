@@ -33,14 +33,16 @@ export class ComprarComponent implements OnInit {
   constructor(public comidaService : ComidaService, public carritoService : CarritoService) {  }
 
   ngOnInit() {
+    
     this.comidaService.getComidas().subscribe(comidas => {
       this.comidas = comidas;
+      console.log(comidas);
     });
 
     this.carritoService.getTasks().subscribe(carritos => {
       this.carritos = carritos;
     });
-    console.log(this.comida);
+    
   }
 
   selectedComida(comida){
