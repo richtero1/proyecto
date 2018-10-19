@@ -44,8 +44,16 @@ export class ComidaService {
   }
 
   getComidas() {
-    console.log(this.comidas);
-    return this.comidas; 
+    //console.log(this.comidas);
+    //return this.comidas; 
+    return this.comidas = this.comidasCollection.snapshotChanges().pipe(
+      map(actions => { 
+        return actions.map(a => {
+        const data = a.payload.doc.data() as Comida;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    }));
     
   }
   

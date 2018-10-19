@@ -5,10 +5,12 @@ import { FormsModule }          from '@angular/forms';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { ComidaService } from './comida.service';
 
-
+import {AuthService} from './auth.service';
+import {AuthGuard} from './auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -26,6 +28,8 @@ import { ComprasComponent } from './menu/compras/compras.component';
 import { ModificarComponent } from './menu/admin/modificar/modificar.component';
 import { HomeComponent } from './menu/home/home.component';
 import { environment } from '../environments/environment.prod';
+import { PerfilComponent } from './perfil/perfil.component';
+import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
@@ -40,12 +44,13 @@ const appRoutes: Routes = [
       {path: 'cambio', component: CambioComponent},
       {path: 'orden', component: OrdenComponent},
       {path: 'compras', component: ComprasComponent},
-      {path: 'admin', component:AdminComponent},
+      {path: 'admin', component:AdminComponent, canActivate: [AuthGuard]},
       {path: 'home', component:HomeComponent},
       { path: 'pago', component: PagoComponent },
     ]
   },
-  { path: 'buscar', component: BuscarComponent },
+  { path: 'buscar', component: BuscarComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
 ];
 
 
@@ -66,25 +71,30 @@ const appRoutes: Routes = [
     OrdenComponent,
     ComprasComponent,
     ModificarComponent,
-    HomeComponent
+    HomeComponent,
+    PerfilComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
 
-    AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),
-    
+    AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),    
     AngularFirestoreModule,
-
+    AngularFireAuthModule,
     
-
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
     
   ],
-  providers: [ComidaService],
+  providers: [
+    ComidaService,
+    AuthService,
+    AuthGuard,
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

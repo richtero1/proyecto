@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-             
+             "src/bootstrap-social.css",
               "src/styles.css"
             ],
             "scripts": []
