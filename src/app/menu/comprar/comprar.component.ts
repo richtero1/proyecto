@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
-import { Comida } from '../../comida'
-import { ComidaService } from '../../comida.service'
+import { Comida } from '../../models/comida'
+import { ComidaService } from '../../services/comida.service'
 
-import { Carrito } from '../../carrito';
-import { CarritoService } from '../../carrito.service';
+import { Carrito } from '../../models/carrito';
+import { CarritoService } from '../../services/carrito.service';
 
 
 @Component({

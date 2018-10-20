@@ -5,6 +5,7 @@ import { AuthService} from './auth.service'
 import { Observable } from 'rxjs';
 import { tap, map, take } from 'rxjs/operators';
 
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
@@ -15,14 +16,15 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | boolean {
 
       return this.auth.user.pipe(
-           take(1),
+           take(1), //exclusion mutua solo puede haber uno en el mismo momento
            map(user => !!user),
            tap(loggedIn => {
              if (!loggedIn) {
-               console.log('access denied');
-              
+               alert('Accesso Negado, Necesita Iniciar Sesion Primero');
              }
          })
     )
+       
   }
+
 }

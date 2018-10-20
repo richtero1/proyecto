@@ -6,7 +6,7 @@ import {
   AngularFirestoreDocument
  } from '@angular/fire/firestore';
 
-import { Comida } from './comida' ;
+import { Comida } from '../models/comida' ;
 
 // import { Observable } from 'rxjs/Observable';
 // import 'rxjs/add/operator/map';

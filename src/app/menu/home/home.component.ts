@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Comida } from '../../comida'
-import { ComidaService } from '../../comida.service'
+import { Comida } from '../../models/comida'
+import { ComidaService } from '../../services/comida.service'
 
 @Component({
   selector: 'app-home',

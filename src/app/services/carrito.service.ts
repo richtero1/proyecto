@@ -6,7 +6,7 @@ import {
   AngularFirestoreDocument
  } from '@angular/fire/firestore';
 
- import { Carrito } from '../app/carrito';
+ import { Carrito } from '../models/carrito';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';

@@ -8,13 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap} from 'rxjs/operators';
 
-interface User {
-  uid: string;
-  email: string;
-  photoURL?: string;
-  displayName?: string;
-  favoriteColor?: string;
-}
+import { User } from '../models/user';
 
 
 @Injectable({ providedIn: 'root' })
@@ -31,7 +25,7 @@ export class AuthService {
       //// Get auth data, then get firestore user document || null
       this.user = this.afAuth.authState.pipe(
         switchMap(user => {
-          if (user) {
+          if (user) { 
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
           } else {
             return of(null)
@@ -52,7 +46,6 @@ export class AuthService {
       })
   }
 
-
   private updateUserData(user) {
     // Sets user data to firestore on login
 
@@ -62,17 +55,48 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      
     }
 
     return userRef.set(data, { merge: true })
 
   }
 
-
   signOut() {
-    this.afAuth.auth.signOut().then(() => {
-        this.router.navigate(['/']);
-    });
+    this.afAuth.auth.signOut()
+    //.then(() => {
+    //     this.router.navigate(['/']);
+    // });
   }
+
+    ///// Role-based Authorization //////
+
+    canRead(user: User): boolean {
+      const allowed = ['admin', 'subscriber']
+      return this.checkAuthorization(user, allowed)
+    }
+
+    canEdit(user: User): boolean {
+      const allowed = ['admin']
+      return this.checkAuthorization(user, allowed)
+    }
+
+    canDelete(user: User): boolean {
+      const allowed = ['admin']
+      return this.checkAuthorization(user, allowed)
+    }
+
+
+    // determines if user has matching role
+    private checkAuthorization(user: User, allowedRoles: string[]): boolean {
+      if (!user) return false
+      for (const role of allowedRoles) {
+        if ( user.roles[role] ) { 
+          return true
+    }
+  }
+  return false
+}
+
+
 }

@@ -2,15 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule }          from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { ComidaService } from './comida.service';
+// import {MatInputModule} from '@angular/material/input';
+// import {MatSelectModule} from '@angular/material/select';
+// import {MatButtonModule} from '@angular/material/button';
+// import {MatCheckboxModule} from '@angular/material/checkbox';
+// import {MatChipsModule} from '@angular/material/chips';
 
-import {AuthService} from './auth.service';
-import {AuthGuard} from './auth-guard.service';
+import { ComidaService } from './services/comida.service';
+
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { AdminGuard } from './admin.guard';
+import { CanReadGuard } from './can-read.guard';
 
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -28,29 +38,28 @@ import { ComprasComponent } from './menu/compras/compras.component';
 import { ModificarComponent } from './menu/admin/modificar/modificar.component';
 import { HomeComponent } from './menu/home/home.component';
 import { environment } from '../environments/environment.prod';
-import { PerfilComponent } from './perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full'},
-  { path: 'inicio', component: InicioComponent },
+  { path: 'inicio', component: InicioComponent},
   
-  { path: 'menu', component: MenuComponent,
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] ,
     children: [
-      {path: 'comprar', component: ComprarComponent},
-      {path: 'buscar', component: BuscarComponent},
-      {path: 'carrito', component: CarritoComponent},
-      {path: 'cambio', component: CambioComponent},
-      {path: 'orden', component: OrdenComponent},
-      {path: 'compras', component: ComprasComponent},
-      {path: 'admin', component:AdminComponent, canActivate: [AuthGuard]},
-      {path: 'home', component:HomeComponent},
-      { path: 'pago', component: PagoComponent },
+      {path: 'comprar', component: ComprarComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'buscar', component: BuscarComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'carrito', component: CarritoComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'cambio', component: CambioComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'orden', component: OrdenComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'compras', component: ComprasComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'admin', component:AdminComponent, canActivate: [AuthGuard, AdminGuard], },
+      {path: 'home', component:HomeComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      { path: 'pago', component: PagoComponent ,canActivate: [AuthGuard, CanReadGuard] },
     ]
   },
-  { path: 'buscar', component: BuscarComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: 'buscar', component: BuscarComponent, canActivate: [AuthGuard, CanReadGuard] },
+  { path: 'login', component: LoginComponent},
 ];
 
 
@@ -72,13 +81,18 @@ const appRoutes: Routes = [
     ComprasComponent,
     ModificarComponent,
     HomeComponent,
-    PerfilComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    // MatButtonModule,
+    // MatCheckboxModule,
+    // MatChipsModule,
+    // MatInputModule,
+    // MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),    
     AngularFirestoreModule,
     AngularFireAuthModule,
