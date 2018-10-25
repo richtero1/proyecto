@@ -1,10 +1,21 @@
 <div class="container mt-3">
     <h2>Tabla de Productos</h2>
     <p>Typee el producto que quiere buscar</p>  
-    <input class="form-control shadow" id="myInput" type="text" placeholder="Search..">
+
+    <!-- <input type="text" [(ngModel)]="searchterm" (keydown)="search($event)">
+    <ul *ngFor="let comida of comidas">
+      <li>{{comida.nombre}}</li>
+      <li>{{comida.precio}}</li>
+    </ul>
+    <div *ngIf="comidas?.length < 1">
+      <p>No se encontro ninguna comida</p>
+    </div> -->
+
+
+    <input class="form-control shadow" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchterm" (keydown)="search($event)">
     <br>
     <div>
-        <table class="table table-bordered shadow">
+        <table class="table table-bordered shadow table-hover">
           <thead>
               <tr>
                   <th>
@@ -39,7 +50,10 @@
           </tr>
         </tbody>
         </table>
+      <div *ngIf="comidas?.length < 1">
+        <h3>No se encontro ninguna comida</h3>
       </div>
+    </div>
   
 </div>
 

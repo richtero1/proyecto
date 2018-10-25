@@ -60,7 +60,7 @@
 
 <div class="row">
     <div class="col-sm-4 " *ngFor="let comida of comidas">
-        <div class="card shadow" style="width:90%; height: 90%;">
+        <div class="card shadow" style="width:90%; height: 95%;">
             <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
             <hr>
             <div class="card-body text-center">
@@ -68,23 +68,29 @@
                 <br>
                 <div class="row">
                     <div class="col sm-4 text-center">
-                        <div class="text-center">
-                            <button type="button" class="btn btn-info btn-circle btn-xl">
-                                <i class="fa fa-wrench" (click)="editComida($event, comida)" data-toggle="modal" data-target="#miModal"></i>
+                        <div >
+                            <button type="button" class="btn btn-info btn-circle btn-lg">
+                                <i class="fa fa-wrench" (click)="editComida($event, comida)" data-toggle="modal" data-target="#Modal"></i>
                             </button>
                             <div *ngIf="editState && comidaToEdit.id === comida.id">
                                 <form (ngSubmit)="updateComida(comida)">
                                     <div class="row">
                                         <div class="text-center">
-                                            <div class="form-group">
+                                            <div class="form-group text-center">
+                                                <br>
+                                                <label for="" style="text-align: center;">Nombre:</label>
                                                 <input type="text" class="form-control" name="nombre" placeholder="Edit Title" [(ngModel)]="comida.nombre">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="precio" placeholder="Editar precio" [(ngModel)]="comida.precio">
+                                                    <label for="" class="text-center">Precio:</label>
+                                                <input type="number" class="form-control" name="precio" placeholder="Editar precio" [(ngModel)]="comida.precio">
                                             </div>
-                                                <input type="submit" class="btn btn-success" value="Update Task">
-                                                <br>
-                                                <button class="btn btn-danger" (click)="deleteComida($event, comida)">Eliminar Comida</button>
+                                                <input type="submit" class="btn btn-success" value="Modificar">
+                                                <br><br>
+                                                <div>
+                                                        <button class="btn btn-danger" (click)="deleteComida($event, comida)">Eliminar Comida</button>
+                                                </div>
+                                                
                                         </div>                                      
                                     </div>
                                 </form>

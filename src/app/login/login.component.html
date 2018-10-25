@@ -18,6 +18,19 @@
                                 <label for="pwd">Contraseña:</label>
                                 <input type="password" class="form-control" placeholder="Ingrese su contraseña" name="contraseña" required>
                             </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-6">
+                                    <button (click)="auth.googleLogin()" class="btn btn-block btn-social btn-google">
+                                        <i class="fa fa-google"></i> Connect Google
+                                </button>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                        
+                        <br>
                             <div class="text-center">
                                  <a routerLink= "/menu/home" routerLinkActive="active" >
                                     <button class="btn btn-success">Iniciar Sesion</button>
@@ -25,10 +38,7 @@
                             </div>
                         </form>
                         
-                        <br><br>
-                        <button (click)="auth.googleLogin()" class="btn btn-danger btn-block btn-social btn-google">
-                                <i class="fa fa-google"></i> Connect Google
-                        </button>
+                        
                         
                         <br><br>
                         <div class="container">

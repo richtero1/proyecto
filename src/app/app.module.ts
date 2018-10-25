@@ -9,18 +9,12 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-// import {MatInputModule} from '@angular/material/input';
-// import {MatSelectModule} from '@angular/material/select';
-// import {MatButtonModule} from '@angular/material/button';
-// import {MatCheckboxModule} from '@angular/material/checkbox';
-// import {MatChipsModule} from '@angular/material/chips';
-
 import { ComidaService } from './services/comida.service';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminGuard } from './admin.guard';
-import { CanReadGuard } from './can-read.guard';
+
 
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -47,18 +41,18 @@ const appRoutes: Routes = [
   
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] ,
     children: [
-      {path: 'comprar', component: ComprarComponent ,canActivate: [AuthGuard, CanReadGuard] },
-      {path: 'buscar', component: BuscarComponent ,canActivate: [AuthGuard, CanReadGuard] },
-      {path: 'carrito', component: CarritoComponent ,canActivate: [AuthGuard, CanReadGuard] },
-      {path: 'cambio', component: CambioComponent ,canActivate: [AuthGuard, CanReadGuard] },
-      {path: 'orden', component: OrdenComponent ,canActivate: [AuthGuard, CanReadGuard] },
-      {path: 'compras', component: ComprasComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'comprar', component: ComprarComponent ,canActivate: [AuthGuard] },
+      {path: 'buscar', component: BuscarComponent ,canActivate: [AuthGuard] },
+      {path: 'carrito', component: CarritoComponent ,canActivate: [AuthGuard] },
+      {path: 'cambio', component: CambioComponent ,canActivate: [AuthGuard] },
+      {path: 'orden', component: OrdenComponent ,canActivate: [AuthGuard] },
+      {path: 'compras', component: ComprasComponent ,canActivate: [AuthGuard] },
       {path: 'admin', component:AdminComponent, canActivate: [AuthGuard, AdminGuard], },
-      {path: 'home', component:HomeComponent ,canActivate: [AuthGuard, CanReadGuard] },
-      { path: 'pago', component: PagoComponent ,canActivate: [AuthGuard, CanReadGuard] },
+      {path: 'home', component:HomeComponent ,canActivate: [AuthGuard] },
+      { path: 'pago', component: PagoComponent ,canActivate: [AuthGuard] },
     ]
   },
-  { path: 'buscar', component: BuscarComponent, canActivate: [AuthGuard, CanReadGuard] },
+  { path: 'buscar', component: BuscarComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},
 ];
 
@@ -88,11 +82,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // MatButtonModule,
-    // MatCheckboxModule,
-    // MatChipsModule,
-    // MatInputModule,
-    // MatSelectModule,
+    
     AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),    
     AngularFirestoreModule,
     AngularFireAuthModule,

@@ -55,6 +55,9 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
+     
+     
+      
       
     }
 
@@ -64,22 +67,17 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut()
-    //.then(() => {
-    //     this.router.navigate(['/']);
-    // });
+   
   }
 
     ///// Role-based Authorization //////
 
-    canRead(user: User): boolean {
-      const allowed = ['admin', 'subscriber']
-      return this.checkAuthorization(user, allowed)
-    }
 
-    canEdit(user: User): boolean {
-      const allowed = ['admin']
-      return this.checkAuthorization(user, allowed)
-    }
+
+    // canRead(user: User): boolean {
+    //   const allowed = ['admin', 'subscriber']
+    //   return this.checkAuthorization(user, allowed)
+    // }
 
     canDelete(user: User): boolean {
       const allowed = ['admin']
