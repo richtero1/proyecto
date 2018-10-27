@@ -58,7 +58,9 @@ export class ComidaService {
   }
   
   addComida(comida: Comida) {
+    this.comidaDoc = this.afs.doc(`comidas/${comida.id}`);
     this.comidasCollection.add(comida);
+    
   }
 
   deleteComida(comida: Comida) {
@@ -73,9 +75,9 @@ export class ComidaService {
 
   disableComida(comida: Comida){
     this.comidaDoc = this.afs.doc(`comidas/${comida.id}`);
-    if(comida.disponibilidad){
-      
-    }
+    
   }
+
+  
 
 }

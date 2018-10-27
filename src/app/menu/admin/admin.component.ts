@@ -60,5 +60,10 @@ export class AdminComponent implements OnInit {
     this.editState = false;
   }
 
+  disableComida(comida) {
+    this.comidaService.updateComida(comida);
+    this.comida.disponibilidad=false;
+  }
+
   
 }

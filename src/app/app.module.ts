@@ -9,6 +9,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+import { NgxPayPalModule } from 'ngx-paypal';
+
 import { ComidaService } from './services/comida.service';
 
 import { AuthService } from './services/auth.service';
@@ -33,6 +35,8 @@ import { ModificarComponent } from './menu/admin/modificar/modificar.component';
 import { HomeComponent } from './menu/home/home.component';
 import { environment } from '../environments/environment.prod';
 import { LoginComponent } from './login/login.component';
+
+
 
 
 const appRoutes: Routes = [
@@ -82,6 +86,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxPayPalModule,
     
     AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),    
     AngularFirestoreModule,
