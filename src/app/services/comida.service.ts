@@ -25,14 +25,7 @@ export class ComidaService {
 
   constructor(public afs:AngularFirestore) {
     this.comidasCollection = this.afs.collection<Comida>('comidas');
-    // this.comidas = this.afs.collection('comidas').valueChanges();
-    // this.comidas = this.comidasCollection.snapshotChanges().map(changes => {
-    //   return changes.map(a => {
-    //     const data = a.payload.doc.data() as Comida;
-    //     data.id = a.payload.doc.id;
-    //     return data;
-    //   });
-    // });
+    
     this.comidas = this.comidasCollection.snapshotChanges().pipe(
       map(actions => { 
         return actions.map(a => {
@@ -44,8 +37,7 @@ export class ComidaService {
   }
 
   getComidas() {
-    //console.log(this.comidas);
-    //return this.comidas; 
+    
     return this.comidas = this.comidasCollection.snapshotChanges().pipe(
       map(actions => { 
         return actions.map(a => {
@@ -74,7 +66,18 @@ export class ComidaService {
   }
 
   disableComida(comida: Comida){
-    this.comidaDoc = this.afs.doc(`comidas/${comida.id}`);
+    this.comidaDoc = this.afs.doc(`comidas/${comida.disponibilidad}`);
+    comida.disponibilidad=false;
+    
+    this.comidaDoc.update(comida);
+    
+  }
+
+  enableComida(comida: Comida){
+    this.comidaDoc = this.afs.doc(`comidas/${comida.disponibilidad}`);
+    comida.disponibilidad=true;
+    
+    this.comidaDoc.update(comida);
     
   }
 

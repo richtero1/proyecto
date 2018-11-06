@@ -2,16 +2,6 @@
     <h2>Tabla de Productos</h2>
     <p>Typee el producto que quiere buscar</p>  
 
-    <!-- <input type="text" [(ngModel)]="searchterm" (keydown)="search($event)">
-    <ul *ngFor="let comida of comidas">
-      <li>{{comida.nombre}}</li>
-      <li>{{comida.precio}}</li>
-    </ul>
-    <div *ngIf="comidas?.length < 1">
-      <p>No se encontro ninguna comida</p>
-    </div> -->
-
-
     <input class="form-control shadow" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchterm" (keydown)="search($event)">
     <br>
     <div>
@@ -34,16 +24,17 @@
           </thead>
           <tbody>
           <tr *ngFor="let comida of comidas" class="text-center ">
-            <td>
+            
+            <td *ngIf="comida.disponibilidad==true">
               <img class="card-img-top " src="{{comida.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
             </td>
-            <td>
+            <td *ngIf="comida.disponibilidad==true"> 
               {{comida.nombre}}
             </td>
-            <td>
+            <td *ngIf="comida.disponibilidad==true">
               {{comida.precio}} $
             </td>
-            <td *ngIf="comida.disponibilidad; else falso">
+            <td *ngIf="comida.disponibilidad==true">
                 Si
             </td>
 
@@ -57,6 +48,4 @@
   
 </div>
 
-<ng-template #falso>
-  No
-</ng-template>
+
