@@ -4,7 +4,7 @@
     </button>
 </div>
 
-
+ <!-- MODAL AGREGAR COMIDA -->
 <div class="modal fade" id="miModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -40,6 +40,7 @@
                     <label for="pwd">Precio:</label>
                     <input type="number" class="form-control" placeholder="Ingrese precio" [(ngModel)]="comida.precio" name="precio" required>
                 </div>
+
                 <div class="modal-footer">
                         <input type="submit" class="btn btn-success">
                         <div class="col-sm-7"></div>
@@ -49,15 +50,12 @@
             </form>
         </div>
 
-        <!-- Modal footer -->
-        
-
       </div>
     </div>
   </div>
 <br>
 <br>
-
+<!-- Tienda -->
 <div class="row">
     <div class="col-sm-4 " *ngFor="let comida of comidas">
         <div class="card shadow" style="width:90%; height: 95%;">
@@ -65,39 +63,22 @@
             <hr>
             <div class="card-body text-center">
                 <h4 class="card-title">{{comida.nombre}}</h4>
+                <h6>Precio: {{comida.precio}}</h6>
+                <div *ngIf="comida.disponibilidad==true; else nodisponible">
+                    <span class="badge badge-success">Disponible</span>
+                </div>
+                <ng-template #nodisponible>
+                    <span class="badge badge-danger">No Disponible</span>
+                </ng-template>
                 <br>
+                
                 <div class="row">
                     <div class="col sm-4 text-center">
                         <div >
                             <button type="button" class="btn btn-info btn-circle btn-lg">
-                                <i class="fa fa-wrench" (click)="editComida($event, comida)" data-toggle="modal" data-target="#Modal"></i>
+                                <i class="fa fa-wrench" (click)="editComida($event, comida)" data-toggle="modal" data-target="#comidaa"></i>
                             </button>
-                            <div *ngIf="editState && comidaToEdit.id === comida.id">
-                                <form (ngSubmit)="updateComida(comida)">
-                                    <div class="row">
-                                        <div class="text-center">
-                                            <div class="form-group text-center">
-                                                <br>
-                                                <label for="" style="text-align: center;">Nombre:</label>
-                                                <input type="text" class="form-control" name="nombre" placeholder="Edit Title" [(ngModel)]="comida.nombre">
-                                            </div>
-                                            <div class="form-group">
-                                                    <label for="" class="text-center">Precio:</label>
-                                                <input type="number" class="form-control" name="precio" placeholder="Editar precio" [(ngModel)]="comida.precio">
-                                            </div>
-                                                <input type="submit" class="btn btn-success" value="Modificar">
-                                                <br><br>
-                                                <div>
-                                                        <button class="btn btn-danger" (click)="disableComida(comida)">Deshabilitar</button>
-                                                        <br>
-                                                        <button class="btn btn-success" (click)="enableComida(comida)">Habilitar</button>
-                                                </div>
-                                                
-                                        </div>                                      
-                                    </div>
-                                </form>
-                                
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col sm-4 text-center">
@@ -107,10 +88,90 @@
                                 </button>
                             </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                                <div *ngIf="editState && comidaToEdit.id === comida.id">
+                                        <form (ngSubmit)="updateComida(comida)">
+                                            <div class="row">
+                                                <div class="text-center">
+                                                    <div class="form-group text-center">
+                                                        <br>
+                                                        <label for="" style="text-align: center;">Nombre:</label>
+                                                        <input type="text" class="form-control" name="nombre" placeholder="Edit Title" [(ngModel)]="comida.nombre">
+                                                    </div>
+                                                    <div class="form-group">
+                                                            <label for="" class="text-center">Precio:</label>
+                                                        <input type="number" class="form-control" name="precio" placeholder="Editar precio" [(ngModel)]="comida.precio">
+                                                    </div>
+                                                        <input type="submit" class="btn btn-success" value="Modificar">
+                                                        <br><br>
+                                                        <div>
+                                                                <button class="btn btn-danger" (click)="disableComida(comida)">Deshabilitar</button>
+                                                                <br>
+                                                                <button class="btn btn-success" (click)="enableComida(comida)">Habilitar</button>
+                                                        </div>
+                                                        
+                                                </div>                                      
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                        </div>
+                        
+                        <div class="col-sm-1"></div>
+                    </div>
                 </div>
             </div>
         </div> 
         <br><br><br>
+        <div class="modal fade" id="comida">
+                <div class="modal-dialog">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Modificar Comida</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        
+                        
+                        <form (ngSubmit)="onSubmit()">
+                            
+                            <div class="form-group">
+                            <br>
+                                <label>Nombre:</label>
+                                <input type="text" class="form-control" placeholder="Ingrese Nombre" [(ngModel)]="comida.nombre" name="nombre" required="true">
+                                <p>estoy aca</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Precio:</label>
+                                <input type="number" class="form-control" placeholder="Ingrese precio" [(ngModel)]="comida.precio" name="precio" required>
+                            </div>
+            
+                            <div class="modal-footer">
+                                    <input type="submit" class="btn btn-success" value="Modificar">
+                                    <!-- <div class="col-sm-7"></div> -->
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-danger" (click)="disableComida(comida)">Deshabilitar</button>
+                                                            
+                                    <button class="btn btn-success" (click)="enableComida(comida)">Habilitar</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+            
+                </div>
+                </div>
+            </div>
     </div>  
 </div>
 <br><br>
+
+<ng-template>
+        
+</ng-template>
+

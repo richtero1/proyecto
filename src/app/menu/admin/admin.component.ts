@@ -19,7 +19,8 @@ export class AdminComponent implements OnInit {
   comida: Comida = {
     nombre: '',
     precio: null,
-    photoUrl:''
+    photoUrl:'',
+    disponibilidad: false
   };
 
   constructor(public comidaService : ComidaService) { }
@@ -36,7 +37,7 @@ export class AdminComponent implements OnInit {
         this.comidaService.addComida(this.comida);
         this.comida.nombre = '';
         this.comida.precio = null;
-        this.comida.photoUrl = '';
+        this.comida.photoUrl = ''; 
         console.log(this.comidas);
     }
   }
@@ -51,7 +52,9 @@ export class AdminComponent implements OnInit {
 
   editComida(event, comida) {
     this.editState = !this.editState;
+    
     this.comidaToEdit = comida;
+    
   }
 
   updateComida(comida) {

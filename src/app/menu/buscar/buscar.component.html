@@ -18,7 +18,10 @@
                     Precio
                   </th>
                   <th>
-                    Disponibilidad
+                    Extras
+                  </th>
+                  <th>
+                    Añadir a Carrito
                   </th>
                 </tr>
           </thead>
@@ -35,7 +38,18 @@
               {{comida.precio}} $
             </td>
             <td *ngIf="comida.disponibilidad==true">
-                Si
+              <form>
+                <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes">
+                  <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
+                  <label class="custom-control-label" for="customCheck-{{ing}}" style="position: relative;left:15%;">{{ing}}</label>
+                  <br>
+                </div>
+        </form> 
+            </td>
+            <td *ngIf="comida.disponibilidad==true">
+              <button type="button" class="btn btn-success btn-circle ">
+                <i class="fa fa-plus"></i>
+            </button>
             </td>
 
           </tr>
