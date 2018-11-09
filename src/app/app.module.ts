@@ -16,7 +16,7 @@ import { ComidaService } from './services/comida.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminGuard } from './admin.guard';
-
+import { NotifyService } from './services/notify.service';
 
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -35,6 +35,7 @@ import { ModificarComponent } from './menu/admin/modificar/modificar.component';
 import { HomeComponent } from './menu/home/home.component';
 import { environment } from '../environments/environment.prod';
 import { LoginComponent } from './login/login.component';
+
 
 
 
@@ -102,6 +103,7 @@ const appRoutes: Routes = [
     ComidaService,
     AuthService,
     AuthGuard,
+    NotifyService
   
   ],
   bootstrap: [AppComponent]

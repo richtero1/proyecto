@@ -1,7 +1,13 @@
+<h2>Tabla de Productos</h2>
+<p>Typee el producto que quiere buscar</p>  
+
+<input class="form-control shadow" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchterm" (keydown)="search($event)">
+
+<br><br>
 <div class="row" >
     
         <div class="col-sm-6" *ngFor="let comida of comidas">
-            <div *ngIf="comida.disponibilidad==true">
+            <div *ngIf="comida.disponibilidad; else template">
                 <div class="card shadow" style="width:90%; height: 90%">
                     <div class="card-body">
                         <div class="text-center">
@@ -52,5 +58,9 @@
 
 <ng-template #noComidas>
         <h5>NO hay comidas disponibles.</h5>
+</ng-template>
+
+<ng-template #template>
+    <p>no disponible</p>
 </ng-template>
 

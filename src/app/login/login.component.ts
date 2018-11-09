@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import{ Router } from '@angular/router'
 import { AuthService } from '../services/auth.service';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -10,7 +12,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, public auth: AuthService) { }
+  signupForm: FormGroup;
+
+  constructor(private router: Router, public auth: AuthService, public fb: FormBuilder) { }
 
   ngOnInit() {
   }
