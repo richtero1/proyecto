@@ -5,52 +5,53 @@
 	<div class="col-sm-10">
 <h4>Cambio de clave </h4>
 
-		<form>
-	<div class="form-group ">
-		<label>Nueva Clave</label>                                        
-        <input type="text" class="form-control shadow" placeholder="" required>
-        <br>
-        <label>Repetir Clave</label>
-        <input type="text" class="form-control shadow" placeholder="" required>
-    </div>
-                                   
-    <!-- <div class="text-center">
-        <a routerLink= "/menu/home" routerLinkActive="active" >
-            <button class="btn btn-success">Cambiar Clave</button>
-        </a>
-    </div> -->
-</form>    
-<div class="text-center">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal">Cambiar Clave</button>
-</div>
+<div class="w3-container" >
+  <form [formGroup]="usuarioForm"> 
+    <label >Ingrese su contraseña</label>
+    <input type="password" class="form-control" id="password"   formControlName = "password"  name="password"> 
+    <label>Ingrese su nueva contraseña</label>
+    <input type="password" class="form-control" id="password2"  formControlName = "password2" name="password2">
+    <label>Repita su nueva contraseña</label>
+    <input type="password" class="form-control" id="password3"  formControlName = "password3" name="password3">
+    
+    <br>
+  </form>
+  <button [disabled]="usuarioForm.value.password2!=usuarioForm.value.password3 || !usuarioForm.valid" class="btn btn-success" style="position:relative; left: 40%; background-color:#610b0b; color:white;" data-toggle="modal" data-target="#Modal" (click)="CambiarContrasena()">Guardar Cambios</button>
+
+
+</div>    
+
+
 
 
 <!-- The Modal -->
-          <div class="modal fade" id="Modal">
-            <div class="modal-dialog">
-              <div class="modal-content">
+<div class="modal fade" id="Modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Cambio de contraseña</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        La contraseña se ha cambiado sastifactoriamente
+      </div>
+         <!-- Modal footer -->
+         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetform()">Close</button>
+        </div>
+      </div>
+  
+  </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Advertencia</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+  </div>
+  
+    
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                  Esta seguro que quiere cambiar su clave
-                </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal" >Cambiar</button>
-                  <div class="col-sm-7"></div>
-                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-	</div>
 </div>
+
+

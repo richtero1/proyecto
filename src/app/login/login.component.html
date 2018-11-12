@@ -8,24 +8,24 @@
                         </div>
                       
                         <h2 class="card-title" style="text-align:center;">Iniciar Sesion</h2>
-            
-                        <form>
-                            <div class="form-group">
-                                <label>Usuario:</label>
-                                <input type="text" class="form-control" placeholder="Ingrese su Usuario" name="usuario" required="true" id="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Contraseña:</label>
-                                <input type="password" class="form-control" placeholder="Ingrese su contraseña" name="contraseña" required id="password">
-                            </div>
-                        </form>
+            <!--///////////// SIGN IN FORM ////////////-->
+                        <div class="flex-container">
+                            <form [formGroup]="loginForm" style="  left: 14%; ">
+                                <label class="label">Email</label>
+                                <input type="text" class="form-control" id="email2"  formControlName = "email" name="email">
+                                <label class="label">Contrasena</label>
+                                <input type="password" class="form-control" id="contrasena2"  formControlName = "contrasena" name="contrasena">
+                            
+                            </form> ````
+                        
+                        </div>
 
                         <form>
                             <br>
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-6">
-                                    <button (click)="auth.googleLogin()" class="btn btn-block btn-social btn-google">
+                                    <button (click)="authservice.googleLogin()" class="btn btn-block btn-social btn-google">
                                         <i class="fa fa-google"></i> Connect Google
                                 </button>
                                 </div>
@@ -34,12 +34,11 @@
                         
                         <br>
                             <div class="text-center">
-                                 <a routerLink= "/menu/home" routerLinkActive="active" >
-                                    <button class="btn btn-success">Iniciar Sesion</button>
-                                </a>
+                                
+                                    <button class="btn btn-success" (click)="IniciarSesion()">Iniciar Sesion</button>
+                                
                             </div>
                         </form>
-                        
                         
                         
                         <br><br>
@@ -64,21 +63,19 @@
                           <!-- Modal body -->
                                         <div class="modal-body">
                                             <h6>Please fill in this form to create an account</h6>
-                                            <form>
-                                                <div class="form-group">
-                                                    <label>Usuario:</label>
-                                                    <input type="text" class="form-control" placeholder="Ingrese su Usuario" name="usuario" required="true">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pwd">Contraseña:</label>
-                                                    <input type="password" class="form-control" placeholder="Ingrese su contraseña" name="contraseña" required>
+                                <!--///////// SIGN UP FORM ////////////-->
+                                                <form [formGroup]="usuarioForm">
+                                                    <label >Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre"   formControlName = "nombre"  name="nombre"> 
+                                                    <label>Apellido</label>
+                                                    <input type="text" class="form-control" id="apellido"  formControlName = "apellido" name="apellido">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" id="email"  formControlName = "email" name="email">
+                                                    <label>Contrasena</label>
+                                                    <input type="password" class="form-control" id="contrasena"  formControlName = "contrasena" name="contrasena">
                                                     <br>
-                                                    <input type="password" class="form-control" placeholder="Repetir contraseña" name="contraseña" required>
-                                                </div>
-                                                <div class="text-center">
-                                                    <button type="submit" class="btn btn-success" >Registrarse</button>
-                                                </div>
-                                            </form>
+                                                    <button (click)="addUser()" type="Submit" class="button-primary" [disabled]="!usuarioForm.valid" style=" position:relative; left: 40%;"> Submit</button>
+                                                </form>
                                         </div>
                     
                           <!-- Modal footer -->
@@ -92,6 +89,7 @@
                     </div>
                    
                 </div>
+              
                 <br>
     </div>
    
