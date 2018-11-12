@@ -36,7 +36,10 @@ export class AuthService {
 
   googleLogin() {
     const provider = new auth.GoogleAuthProvider()
-    return this.oAuthLogin(provider);
+    
+    return this.oAuthLogin(provider).then(response=>{
+      this.router.navigate(['menu/home'])
+    })
   }
 
   private oAuthLogin(provider) {

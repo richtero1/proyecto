@@ -52,7 +52,7 @@ const appRoutes: Routes = [
       {path: 'cambio', component: CambioComponent },
       {path: 'orden', component: OrdenComponent  },
       {path: 'compras', component: ComprasComponent  },
-      {path: 'admin', component:AdminComponent },
+      {path: 'admin', component:AdminComponent,canActivate: [AdminGuard] },
       {path: 'home', component:HomeComponent  },
       { path: 'pago', component: PagoComponent  },
     ]

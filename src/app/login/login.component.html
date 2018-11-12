@@ -16,31 +16,35 @@
                                 <label class="label">Contrasena</label>
                                 <input type="password" class="form-control" id="contrasena2"  formControlName = "contrasena" name="contrasena">
                             
-                            </form> ````
+                            </form>
                         
                         </div>
 
                         <form>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-6">
-                                    <button (click)="authservice.googleLogin()" class="btn btn-block btn-social btn-google">
-                                        <i class="fa fa-google"></i> Connect Google
-                                </button>
-                                </div>
-                                <div class="col-sm-3"></div>
-                            </div>
+                           
+                           
                         
                         <br>
                             <div class="text-center">
                                 
-                                    <button class="btn btn-success" (click)="IniciarSesion()">Iniciar Sesion</button>
-                                
+                                    <button class="btn btn-success" (click)="IniciarSesion()" >
+                                        Iniciar Sesion
+                                    </button>
                             </div>
                         </form>
                         
-                        
+                        <br><br>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <button (click)="authservice.googleLogin()" class="btn btn-block btn-social btn-google">
+                                    
+                                    <i class="fa fa-google"></i> Connect Google
+                                    
+                            </button>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
                         <br><br>
                         <div class="container">
                             <h5>No te haz Registrado?</h5>
