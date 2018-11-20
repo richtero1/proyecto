@@ -3,10 +3,17 @@
     <div class="col-sm-6">
         <h2>Carrito </h2>
     </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+      <button class="btn btn-success" routerLink = "/menu/pago" routerLinkActive= "active">
+        <h4>Checkout</h4>
+      </button>
+    </div>
   </div>
     
     <br>
-    <table class="table table-bordered shadow">
+    
+    <table class="table table-bordered shadow table-hover">
         <thead>
             <tr class="text-center">
               <th >Imagen</th>
@@ -14,11 +21,11 @@
               <th>Precio</th>
               <th>Cantidad</th>
               <th>Modificar</th>
-              <th>Eliminar</th>
             </tr>
         </thead>
         <tbody id="Table">
             <tr *ngFor="let cart of carrito" class="text-center">
+              
                 <td>
                   <img class="card-img-top" src="{{cart.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
                 </td>
@@ -30,14 +37,14 @@
                 </td>
                 <td>
                     {{cart.cantidad}}
-                      <p>1</p>
+                      
                        <br>
-                       <a class="btn btn-primary btn-circle btn" role="button" >
-                            <i class="fa fa-plus"></i>
-                        </a>
-                        <a class="btn btn-danger btn-circle btn" role="button" >
-                          <i class="fa fa-minus"></i>
-                      </a>
+                       <button class="btn btn-primary btn-circle btn" type="button" >
+                            <i class="fa fa-plus" (click)="addCarrito(cart)"></i> 
+                       </button>
+                        <button type="button" class="btn btn-danger btn-circle btn-lg">
+                          <i class="fa fa-minus" (click)="deleteComida(cart, cart.carritoComidaId)"></i>
+                      </button>
           
                 </td>
                 
@@ -47,7 +54,7 @@
                     </a>
 
                                    <!-- The Modal -->
-          <!-- <div class="modal fade" id="{{comida.nombre}}">
+           <div class="modal fade" id="{{cart.nombre}}">
               <div class="modal-dialog">
                 <div class="modal-content">
   
@@ -60,7 +67,7 @@
             
                    <div class="modal-body">
                           <form>
-                                  <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes" >
+                                  <div class="custom-control custom-checkbox" *ngFor="let ing of cart.ingredientes" >
                                     <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
                                     <label class="custom-control-label" for="customCheck-{{ing}}">{{ing}}</label>
                                     <br>
@@ -77,15 +84,11 @@
   
                 </div>
               </div>
-            </div> -->
+            </div>
                      
                 </td>
 
-                <td>
-                  <button type="button" class="btn btn-danger btn-circle btn-lg">
-                    <i class="fa fa-times" (click)="deleteComida(cart)"></i>
-                </button>
-                </td>
+                
               </tr>
           </tbody>
     </table>

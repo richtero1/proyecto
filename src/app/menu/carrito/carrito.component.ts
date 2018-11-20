@@ -23,7 +23,7 @@ export class CarritoComponent implements OnInit {
 
   carrito: Comida[];  
 
-
+  userKey:string;
 
   constructor(public carritoService : CarritoService, public comidaService: ComidaService, public auth: AuthService) {
 
@@ -32,6 +32,7 @@ export class CarritoComponent implements OnInit {
    ngOnInit() {
 
     this.auth.user.subscribe(user=>{
+      this.userKey = user.uid;
       this.carritoService.getCarrito(user.uid).subscribe(carrito =>{
         this.carrito= [];
         carrito.forEach(comida=>{
@@ -41,16 +42,20 @@ export class CarritoComponent implements OnInit {
         })
       })
     })
-    
-    
-
  
   }
 
+  
+
    deleteComida(comida: Comida, id: string){
-      this.carritoService.deleteComida(comida,id);
+      this.carritoService.deleteComida(comida,id,this.userKey);
       console.log(id);
    }
 
 
+   addCarrito(comida :Comida){
+    this.carritoService.addComida(this.userKey,comida);
+
+
+  }
 }

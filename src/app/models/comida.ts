@@ -6,4 +6,5 @@ export interface Comida {
     disponibilidad?: boolean;
     cantidad?: number;
     ingredientes?: string[];
+    carritoComidaId?: string;
 }

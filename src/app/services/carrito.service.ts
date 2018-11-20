@@ -43,12 +43,14 @@ export class CarritoService {
 
   }
 
-  deleteComida(comida: Comida, id:string) {
-    this.carritoDoc = this.afs.doc<Comida>(`carritos/${comida.id}`);
+  deleteComida(comida: Comida, id:string, uid:string) {
+    this.carritoDoc = this.afs.doc<Comida>(`carritos/${uid}`);
 
    this.carritoDoc.collection('carrito').doc(id).delete().then(data=>{
     console.log("Result", data)
   });
+
+  
 
  }
 

@@ -11,14 +11,21 @@
                                 <th >Imagen</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
-                                <th>Cantidad</th>
                             </tr>
                         </thead>
                         <tbody id="Table">
-                                <tr *ngFor="" class="text-center">
-                                    
-                                  </tr>
-                              </tbody>
+                                <tr *ngFor="let cart of carrito" class="text-center">
+                                    <td>
+                                        <img class="card-img-top" src="{{cart.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
+                                    </td>
+                                    <td>
+                                        {{cart.nombre}}
+                                    </td>
+                                    <td>
+                                        {{cart.precio}} $
+                                    </td>
+                                </tr>
+                        </tbody>
                     </table>
                     <div class="text-center">
                         <button class="btn btn-danger">Eliminar Compra</button>

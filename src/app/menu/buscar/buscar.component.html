@@ -47,9 +47,9 @@
         </form> 
             </td>
             <td *ngIf="comida.disponibilidad==true">
-              <button type="button" class="btn btn-success btn-circle ">
-                <i class="fa fa-plus"></i>
-            </button>
+                <button class="btn btn-success btn-circle btn" type="button" >
+                    <i class="fa fa-plus" (click)="addCarrito(comida)"></i> 
+               </button>
             </td>
 
           </tr>

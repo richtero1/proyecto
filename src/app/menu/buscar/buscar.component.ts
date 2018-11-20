@@ -7,6 +7,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
 
+import { CarritoService } from '../../services/carrito.service';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.component.html',
@@ -31,7 +35,9 @@ export class BuscarComponent implements OnInit {
 
   comidas: Comida[];
 
-  constructor(public comidaService : ComidaService, private afs: AngularFirestore) { }
+  user: User;
+
+  constructor(public comidaService : ComidaService, private afs: AngularFirestore, public carritoService: CarritoService, public auth: AuthService) { }
 
   ngOnInit() {
     this.comidaService.getComidas().subscribe(comidas => {
@@ -47,6 +53,11 @@ export class BuscarComponent implements OnInit {
       this.firequery(value[0], value[1]).subscribe((comidas) => {
         this.comidas = comidas;
       })
+    })
+
+    this.auth.user.subscribe(user=>{
+      this.user=user;
+      console.log(user);
     })
   }
 
@@ -67,6 +78,12 @@ export class BuscarComponent implements OnInit {
  
   getallcomidas() {
     return this.afs.collection('comidas', ref => ref.orderBy('nombre')).valueChanges();
+  }
+
+  addCarrito(comida :Comida){
+    this.carritoService.addComida(this.user.uid,comida);
+
+
   }
 
 
