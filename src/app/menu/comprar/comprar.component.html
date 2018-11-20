@@ -15,15 +15,16 @@
                                 <hr>
                                 <h4 class="card-title">{{ comida.nombre }}</h4>
                                 <p class="card-text">{{ comida.precio }} $</p>
-                                <form (click)="onSubmit()" (click)="selectedComida(comida)">
+                                <form (click)="selectedComida(comida)">
             
-                                    <div *ngIf="comida==comidaselected">
-                                            <label for="">{{carrito.nombre}}</label>
-                                    </div>
+                                    <!-- <div *ngIf="comida==comidaselected">
+                                            <label for="">{{comida.nombre}}</label>
+                                    </div> -->
                                     
-                                    <button class="btn btn-primary " >Añadir a carrito</button>
+                                    
                                     <!-- <input type="submit" class="btn btn-primary" > -->
                                 </form>
+                                <button (click)="addCarrito(comida)" class="btn btn-primary " >Añadir a carrito</button>
                                 
                                 <br><br>
                         </div>

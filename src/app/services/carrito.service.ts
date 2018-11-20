@@ -6,47 +6,51 @@ import {
   AngularFirestoreDocument
  } from '@angular/fire/firestore';
 
- import { Carrito } from '../models/carrito';
+ import { Comida } from '../models/comida';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
+import { AuthService } from '../services/auth.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
 
-  carritoCollection: AngularFirestoreCollection<Carrito>;
-  carrito: Observable<Carrito[]>;
-  carritoDoc: AngularFirestoreDocument<Carrito>;
+  carritoCollection: AngularFirestoreCollection<Comida>;
+  carrito: Observable<Comida[]>;
+  carritoDoc: AngularFirestoreDocument<Comida>;
 
-  constructor(public afs:AngularFirestore) {
-    this.carritoCollection = this.afs.collection('carrito');
-    // this.tasks = this.afs.collection('tasks').valueChanges();
-    this.carrito = this.carritoCollection.snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as Carrito;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    });
+  constructor(public afs:AngularFirestore, public auth: AuthService ) {
+    
   }
 
-  getTasks() {
-    return this.carrito; 
+  getCarrito(id: string) {
+
+    return this.afs.collection('carritos').doc(id).collection('carrito').snapshotChanges();
   }
+
   
-  addTask(carrito: Carrito) {
-    this.carritoCollection.add(carrito);
+  addComida(id: string, comida: Comida) {
+     this.carritoDoc = this.afs.doc<Comida>(`carritos/${id}`);
+
+    
+    this.carritoDoc.collection('carrito').add(comida).then(data=>{
+      console.log("Result", data)
+    });
+
   }
 
-  deleteTask(carrito: Carrito) {
-    this.carritoDoc = this.afs.doc(`carrito/${carrito.id}`);
-    this.carritoDoc.delete();
-  }
+  deleteComida(comida: Comida, id:string) {
+    this.carritoDoc = this.afs.doc<Comida>(`carritos/${comida.id}`);
 
-  updateTask(carrito: Carrito) {
-    this.carritoDoc = this.afs.doc(`carrito/${carrito.id}`);
-    this.carritoDoc.update(carrito);
-  }
+   this.carritoDoc.collection('carrito').doc(id).delete().then(data=>{
+    console.log("Result", data)
+  });
+
+ }
+
+  
 }

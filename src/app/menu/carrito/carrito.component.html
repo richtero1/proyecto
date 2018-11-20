@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-sm-6">
-        <h2>Carrito  Compras</h2>
+        <h2>Carrito </h2>
     </div>
   </div>
     
@@ -14,21 +14,22 @@
               <th>Precio</th>
               <th>Cantidad</th>
               <th>Modificar</th>
+              <th>Eliminar</th>
             </tr>
         </thead>
         <tbody id="Table">
-            <tr *ngFor="let comida of comidas" class="text-center">
+            <tr *ngFor="let cart of carrito" class="text-center">
                 <td>
-                  <img class="card-img-top" src="{{comida.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
+                  <img class="card-img-top" src="{{cart.photoUrl}}" alt="Card image" style="width: 100px;height: 100px">
                 </td>
                 <td>
-                  {{comida.nombre}}
+                  {{cart.nombre}}
                 </td>
                 <td>
-                  {{comida.precio}} $
+                  {{cart.precio}} $
                 </td>
                 <td>
-                    {{comida.cantidad}}
+                    {{cart.cantidad}}
                       <p>1</p>
                        <br>
                        <a class="btn btn-primary btn-circle btn" role="button" >
@@ -41,21 +42,22 @@
                 </td>
                 
                 <td>
-                    <a class="btn btn-primary btn-circle btn" data-toggle="modal" href="#{{comida.nombre}}" role="button" >
+                    <a class="btn btn-primary btn-circle btn" data-toggle="modal" href="#{{cart.nombre}}" role="button" >
                         <i class="fa fa-plus"></i>
                     </a>
+
                                    <!-- The Modal -->
-          <div class="modal fade" id="{{comida.nombre}}">
+          <!-- <div class="modal fade" id="{{comida.nombre}}">
               <div class="modal-dialog">
                 <div class="modal-content">
   
-                  <!-- Modal Header -->
+                
                   <div class="modal-header">
                     <h4 class="modal-title">Modificar</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
   
-                  <!-- Modal body -->
+            
                    <div class="modal-body">
                           <form>
                                   <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes" >
@@ -66,7 +68,7 @@
                           </form>
                   </div>
   
-                  <!-- Modal footer -->
+             
                   <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal" >Modificar</button>
                     <div class="col-sm-7"></div>
@@ -75,8 +77,14 @@
   
                 </div>
               </div>
-            </div>
+            </div> -->
                      
+                </td>
+
+                <td>
+                  <button type="button" class="btn btn-danger btn-circle btn-lg">
+                    <i class="fa fa-times" (click)="deleteComida(cart)"></i>
+                </button>
                 </td>
               </tr>
           </tbody>

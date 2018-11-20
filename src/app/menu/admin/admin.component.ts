@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
         this.comida.precio = null;
         this.comida.photoUrl = ''; 
         console.log(this.comidas);
-    }
+    } 
   }
 
   deleteComida(event, comida) {

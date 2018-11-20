@@ -31,7 +31,7 @@ export class AuthService {
             return of(null)
           }
         })
-      )
+      ); console.log(this.user);
     }
 
   googleLogin() {
@@ -58,10 +58,6 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-     
-     
-      
-      
     }
 
     return userRef.set(data, { merge: true })
