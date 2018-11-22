@@ -14,7 +14,7 @@
                                 <label class="label">Email</label>
                                 <input type="text" class="form-control" id="email2"  formControlName = "email" name="email">
                                 <label class="label">Contrasena</label>
-                                <input type="password" class="form-control" id="contrasena2"  formControlName = "contrasena" name="contrasena">    
+                                <input type="password" class="form-control" id="password2"  formControlName = "password" name="password">    
                             </form>
                         </div>
                         <form>            
@@ -55,7 +55,7 @@
                     
                           <!-- Modal body -->
                                         <div class="modal-body">
-                                            <h6>Please fill in this form to create an account</h6>
+                                            <h6>Please fill in this form to create an account</h6> 
                                 <!--///////// SIGN UP FORM ////////////-->
                                                 <form [formGroup]="usuarioForm">
                                                     <label >Nombre</label>
@@ -65,9 +65,9 @@
                                                     <label>Email</label>
                                                     <input type="text" class="form-control" id="email"  formControlName = "email" name="email">
                                                     <label>Contrasena</label>
-                                                    <input type="password" class="form-control" id="contrasena"  formControlName = "contrasena" name="contrasena">
+                                                    <input type="password" class="form-control" id="password"  formControlName = "password" name="password">
                                                     <br>
-                                                    <button (click)="addUser()" type="Submit" class="button-primary" [disabled]="!usuarioForm.valid" style=" position:relative; left: 40%;"> Submit</button>
+                                                    <button (click)="addUser()" type="Submit" class="button-primary"  style=" position:relative; left: 40%;"> Submit</button>
                                                 </form>
                                         </div>
                     

@@ -35,7 +35,6 @@ export class CarritoService {
   
   addComida(id: string, comida: Comida) {
      this.carritoDoc = this.afs.doc<Comida>(`carritos/${id}`);
-
     
     this.carritoDoc.collection('carrito').add(comida).then(data=>{
       console.log("Result", data)
@@ -50,9 +49,8 @@ export class CarritoService {
     console.log("Result", data)
   });
 
-  
-
  }
+
 
   
 }

@@ -16,6 +16,8 @@ export class AuthService {
 
   user: Observable<User>;
 
+  usuario: User;
+
   constructor(
     public afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -69,11 +71,30 @@ export class AuthService {
    
   }
 
-  addUser(email: string, password: string, nombre: string){
+  addUser(value){
   
-     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(user=>{
-       user.user.updateProfile({displayName: nombre, photoURL:"null"})
+     this.afAuth.auth.createUserWithEmailAndPassword(value.email , value.password)
+     .then(user => {
+       this.afs.collection("users").doc(user.user.uid).set({
+         nombre: value.nombre,
+         apellido: value.apellido,
+         email: value.email,
+         password: value.password,
+         uid: user.user.uid
+       })
+
+       this.afs.collection("carritos").doc(user.user.uid).set({
+
+       })
+
+       this.afs.collection("compras").doc(user.user.uid).set({
+
+       })
+
+
      }).catch(err=> console.log(err.message));
+
+   
 
      this.user = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -88,9 +109,9 @@ export class AuthService {
      
   }
 
-  signIn(email: string, password: string){
+  signIn(value){
 
-    this.afAuth.auth.signInWithEmailAndPassword(email, password).then((res)=>{
+    this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password).then((res)=>{
       this.router.navigateByUrl('/menu/home'); 
       
     }).catch(err=> console.error(err.message));
