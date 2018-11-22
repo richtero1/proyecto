@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import {  Router} from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { auth } from 'firebase';
 
 
 @Component({
@@ -60,34 +61,20 @@ export class LoginComponent implements OnInit {
    addUser() {
      console.log("Form", this.usuarioForm.value)
   
-     this.afAuth.auth.createUserWithEmailAndPassword(this.usuarioForm.value.email,this.usuarioForm.value.contrasena).then(user=>{
-       user.user.updateProfile({displayName: this.usuarioForm.value.nombre, photoURL:"null"})
-     }).catch(err=> console.log(err.message));
+     this.authservice.addUser(this.usuarioForm.value.email, this.usuarioForm.value.contrasena, this.usuarioForm.value.nombre);
+
      this.usuarioForm.reset();
 
-    
-     
    }
  
    IniciarSesion(){
      
-     
-     this.afAuth.auth.signInWithEmailAndPassword(this.loginForm.value.email,this.loginForm.value.contrasena).then((res)=>{
-      this.router.navigateByUrl('/menu/home'); 
-      this.resetform();
-     
-    }).catch(err=> console.error(err.message));
-    var User= this.afAuth.auth.currentUser;
+     this.authservice.signIn(this.loginForm.value.email, this.loginForm.value.contrasena);
+
+     var User= this.afAuth.auth.currentUser;
+
+     console.log(User +" CONSOLE LOG")
  
-    if(User!=null){
-      User.providerData.forEach(function (profile) {
-        console.log("Sign-in provider: " + profile.providerId);
-        console.log("  Provider-specific UID: " + profile.uid);
-        console.log("  Name: " + profile.displayName);
-        console.log("  Email: " + profile.email);
-        console.log("  Photo URL: " + profile.photoURL);
-      });
-    }
    }
  
    resetform(){

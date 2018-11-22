@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
+
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class HeaderComponent implements OnInit {
 
    public usuario:any;
+
+   public user: User;
    
   constructor(public auth: AuthService) { 
     this.auth.afAuth.authState.subscribe(auth=>{
@@ -17,6 +20,11 @@ export class HeaderComponent implements OnInit {
         this.usuario=auth;
       
       }
+    })
+
+    this.auth.user.subscribe(user=>{
+      this.user=user;
+      console.log(user);
     })
   
   }

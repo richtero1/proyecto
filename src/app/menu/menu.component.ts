@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { User } from 'src/app/models/user';
+
+
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +11,18 @@ import { AuthService } from '../services/auth.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  
+
+  user : User; 
+   
+  constructor(public auth: AuthService) { 
+    
+    this.auth.user.subscribe(user=>{
+      this.user=user;
+      console.log(user);
+    })
+  
+  }
 
 
   ngOnInit() {

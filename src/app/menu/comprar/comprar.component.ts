@@ -15,7 +15,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 
 
-
 @Component({
   selector: 'app-comprar',
   templateUrl: './comprar.component.html',
@@ -72,11 +71,7 @@ export class ComprarComponent implements OnInit {
       })
     })
 
-  
-
-    }
-    
-  
+  }
 
   search($event) {
     let q = $event.target.value;
@@ -101,27 +96,6 @@ export class ComprarComponent implements OnInit {
     this.comidaselected=comida;
     
   }
-
-  // onSubmit(){
-  //   if(this.carrito.nombre != '' && this.carrito.precio != null && this.carrito.photoUrl != '' ){
-  //       // this.carritoService.carritoCollection.add();
-
-  //       this.comidaselected=this.comida;
-
-  //       this.carrito=this.comidaselected;
-  //       this.carritos.push(this.carrito);
-  //       // this.carritoService.addComida(this.carrito);
-
-  //       this.comidaselected.nombre = '';
-  //       this.comidaselected.precio = null;
-  //       this.comidaselected.photoUrl = '';
-
-  //       this.carrito.nombre = '';
-  //       this.carrito.precio = null;
-  //       this.carrito.photoUrl = '';
-  //   }
-  //   console.log(this.carritos);
-  // }
 
   addCarrito(comida :Comida){
     this.carritoService.addComida(this.user.uid,comida);

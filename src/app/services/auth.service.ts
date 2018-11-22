@@ -69,14 +69,37 @@ export class AuthService {
    
   }
 
+  addUser(email: string, password: string, nombre: string){
+  
+     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(user=>{
+       user.user.updateProfile({displayName: nombre, photoURL:"null"})
+     }).catch(err=> console.log(err.message));
+
+     this.user = this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) { 
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+        } else {
+          return of(null)
+        }
+      })
+    ); console.log(this.user);
+     
+     
+  }
+
+  signIn(email: string, password: string){
+
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).then((res)=>{
+      this.router.navigateByUrl('/menu/home'); 
+      
+    }).catch(err=> console.error(err.message));
+    
+  }
+
+
     ///// Role-based Authorization //////
 
-
-
-    // canRead(user: User): boolean {
-    //   const allowed = ['admin', 'subscriber']
-    //   return this.checkAuthorization(user, allowed)
-    // }
 
     canDelete(user: User): boolean {
       const allowed = ['admin']
