@@ -4,7 +4,9 @@
 
     <input class="form-control shadow" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchterm" (keydown)="search($event)">
     <br>
-    <div>
+
+    
+    <div *ngIf="comidas.length > 1; else noComida">
         <table class="table table-bordered shadow table-hover">
           <thead>
               <tr>
@@ -39,9 +41,9 @@
             </td>
             <td *ngIf="comida.disponibilidad==true">
               <form>
-                <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes">
-                  <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
-                  <label class="custom-control-label" for="customCheck-{{ing}}" style="position: relative;left:15%;">{{ing}}</label>
+                <div class="custom-control custom-checkbox" *ngFor="let extra of comida.extras">
+                  <input type="checkbox" class="custom-control-input" id="customCheck-{{extra}}" name="example1" >
+                  <label class="custom-control-label" for="customCheck-{{extra}}" style="position: relative;left:15%;">{{extra}}</label>
                   <br>
                 </div>
         </form> 
@@ -55,11 +57,14 @@
           </tr>
         </tbody>
         </table>
-      <div *ngIf="comidas?.length < 1">
-        <h3>No se encontro ninguna comida</h3>
-      </div>
+      
     </div>
   
 </div>
+
+<ng-template #noComida>
+  <br>
+    <h3>No se encontro ninguna Comida</h3>
+</ng-template>
 
 

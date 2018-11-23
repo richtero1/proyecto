@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 
 import { Comida } from '../../models/comida';
 import { ComidaService } from '../../services/comida.service';
@@ -8,15 +8,17 @@ import { CarritoService } from '../../services/carrito.service';
 import { User } from '../../models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 import { of } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+declare let paypal: any;
 
 @Component({
   selector: 'app-pago',
   templateUrl: './pago.component.html',
   styleUrls: ['./pago.component.css']
 })
-export class PagoComponent implements OnInit {
+export class PagoComponent implements OnInit, AfterViewChecked {
 
   comidas: Comida[];
 
@@ -31,14 +33,13 @@ export class PagoComponent implements OnInit {
   impuestos: number = 0;
   total: number = 0;
 
-  public payPalConfig?: PayPalConfig;
-
+  paypalLoad: boolean = true;
+  addScript: boolean = false;
   
   constructor(public carritoService : CarritoService, public comidaService: ComidaService, public auth: AuthService){}
 
   ngOnInit() {
     
-    this.initConfig();
 
     this.comidaService.getComidas().subscribe(comidas => {
       this.comidas = comidas;
@@ -74,96 +75,53 @@ export class PagoComponent implements OnInit {
     })
   }
 
-  private initConfig(): void {
-    this.payPalConfig = new PayPalConfig(
-      PayPalIntegrationType.ClientSideREST,
-      PayPalEnvironment.Sandbox,
-      {
-        commit: true,
-        client: {
-          sandbox:
-            'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R'
-        },
-        button: {
-          label: 'paypal',
-          layout: 'vertical'
-        },
-        onAuthorize: (data, actions) => {
-          console.log('Authorize');
-          return of(undefined);
-        },
-        onPaymentComplete: (data, actions) => {
-          console.log('OnPaymentComplete');
-        },
-        onCancel: (data, actions) => {
-          console.log('OnCancel');
-        },
-        onError: err => {
-          console.log('OnError');
-        },
-        onClick: () => {
-          console.log('onClick');
-        },
-        validate: (actions) => {
-          console.log(actions);
-        },
-        experience: {
-          noShipping: true,
-          brandName: 'Angular PayPal'
-        },
-        transactions: [
-          {
-            amount: {
-              total: 30.11,
-              currency: 'USD',
-              details: {
-                subtotal: 30.00,
-                tax: 0.07,
-                shipping: 0.03,
-                handling_fee: 1.00,
-                shipping_discount: -1.00,
-                insurance: 0.01
-              }
-            },
-            custom: 'Custom value',
-            item_list: {
-              items: [
-                {
-                  name: 'hat',
-                  description: 'Brown hat.',
-                  quantity: 5,
-                  price: 3,
-                  tax: 0.01,
-                  sku: '1',
-                  currency: 'USD'
-                },
-                {
-                  name: 'handbag',
-                  description: 'Black handbag.',
-                  quantity: 1,
-                  price: 15,
-                  tax: 0.02,
-                  sku: 'product34',
-                  currency: 'USD'
-                }],
-              shipping_address: {
-                recipient_name: 'Brian Robinson',
-                line1: '4th Floor',
-                line2: 'Unit #34',
-                city: 'San Jose',
-                country_code: 'US',
-                postal_code: '95131',
-                phone: '011862212345678',
-                state: 'CA'
-              },
-            },
-          }
-        ],
-        note_to_payer: 'Contact us if you have troubles processing payment'
-      }
-    );
+  vaciarCarrito(){
+    this.carritoService.vaciarCarrito(this.userKey);
+  }
 
-  
+  paypalConfig = {
+    env: 'sandbox',
+    client: {
+        sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R'
+    },
+    commit: true,
+    payment: (data, actions) => {
+        return actions.payment.create({
+            payment: {
+                transactions: [
+                    {
+                        amount: { total: this.total , currency: 'USD' }
+                    }
+                ]
+            }
+        })
+    },
+
+    onAuthorize:(data, actions) => {
+        return actions.payment.execute().then((payment) => {
+            window.alert('Pago Completado!');
+            //Do something when payment is successful.
+            this.vaciarCarrito();
+        })
     }
+  };
+  
+  ngAfterViewChecked(): void {
+    if(!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+        this.paypalLoad = true;
+      })
+    }
+  }
+   addPaypalScript(){
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scriptElement = document.createElement('script');
+      scriptElement.src = 'https://www.paypalobjects.com/api/checkout.js'
+      scriptElement.onload = resolve;
+      document.body.appendChild(scriptElement);
+    })
+  }
 
 }

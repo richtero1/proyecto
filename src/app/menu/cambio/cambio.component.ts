@@ -43,7 +43,7 @@ export class CambioComponent implements OnInit {
 
   CambiarContrasena(){
     this.afAuth.auth.currentUser.updatePassword(this.usuarioForm.value.password2);
-    
+    console.log(this.usuarioForm.value.password2);
   }
 
   resetform(){

@@ -29,22 +29,23 @@
                                 <br><br>
                         </div>
                         
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" >
                             <div class="col-sm-2"><a class="btn btn-primary btn-circle btn" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <i class="fa fa-plus"></i>
+                                    <i  class="fa fa-plus"></i>
                                 </a>
                             </div>
-                            <div class="col-sm-4"> <h5>      Extra</h5>
+                            <div class="col-sm-4"> 
+                                <h5>      Extra</h5>
                             </div>
                         </div>
                     </div>
                     <div class="collapse" id="{{comida.nombre}}">
                         <div class="card-text">
                             
-                            <form>
-                                    <div class="custom-control custom-checkbox" *ngFor="let ing of comida.ingredientes">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
-                                      <label class="custom-control-label" for="customCheck-{{ing}}" style="position: relative;left:15%;">{{ing}}</label>
+                            <form [formGroup]="extraForm">
+                                    <div class="custom-control custom-checkbox" *ngFor="let extra of comida.extras">  
+                                      <input type="checkbox" class="custom-control-input" id="customCheck-{{extra}}" name="example1" >
+                                      <label class="custom-control-label" for="customCheck-{{extra}}" style="position: relative;left:15%;">{{extra}}</label>
                                       <br>
                                     </div>
                             </form> 
@@ -65,3 +66,4 @@
     <img src="http://www.timandorra.com/wp-content/uploads/2016/11/Imagen-no-disponible.png" alt="">
 </ng-template>
 
+<!-- hola -->

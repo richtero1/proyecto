@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Rx';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class ComprarComponent implements OnInit {
   startAt = new Subject();
   endAt = new Subject();
 
+  extraForm: FormGroup;
+
   user : User;  
  
   clubs;
@@ -42,12 +45,18 @@ export class ComprarComponent implements OnInit {
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
 
-  constructor(public comidaService : ComidaService, public carritoService : CarritoService, public afs : AngularFirestore, public auth: AuthService) {
+  constructor(public comidaService : ComidaService, public carritoService : CarritoService, public afs : AngularFirestore, public auth: AuthService, public fb: FormBuilder) {
 
     this.auth.user.subscribe(user=>{
       this.user=user;
       
     })
+
+    this.extraForm= this.fb.group({
+      
+    })
+
+    
   }
 
   ngOnInit() {
@@ -60,16 +69,13 @@ export class ComprarComponent implements OnInit {
     this.getallcomidas().subscribe((comidas) => {
       this.allcomidas = comidas;
     })
-
     
-
-    
-
     Observable.combineLatest(this.startobs, this.endobs).subscribe((value) => {
       this.firequery(value[0], value[1]).subscribe((comidas) => {
         this.comidas = comidas;
       })
     })
+
 
   }
 
@@ -100,10 +106,16 @@ export class ComprarComponent implements OnInit {
   addCarrito(comida :Comida){
     this.carritoService.addComida(this.user.uid,comida);
 
-
   }
 
- 
+  addToForm(){
+    this.comidas.forEach(comida => {
+      comida.extras.forEach((extra,index)=>{
+        this.extraForm.addControl(extra,new FormControl(false,[Validators.required]));
+      })
+    })
+    
+  }
 
   
 

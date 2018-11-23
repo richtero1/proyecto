@@ -5,6 +5,6 @@ export interface Comida {
     photoUrl?: string;
     disponibilidad?: boolean;
     cantidad?: number;
-    ingredientes?: string[];
+    extras?: string[];
     carritoComidaId?: string;
 }

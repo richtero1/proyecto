@@ -51,6 +51,25 @@ export class CarritoService {
 
  }
 
+ vaciarCarrito(uid:string){
+  console.log("user/id",uid)
+
+  let carritoDoc = this.afs.collection(`carritos`);
+
+   let removeCarrito = carritoDoc.doc(uid).collection('carrito').snapshotChanges().subscribe(data=>{
+     data.forEach(element=>{
+      carritoDoc.doc(uid).collection('carrito').doc(element.payload.doc.id).delete().then(data=>{
+        console.log("data",data)
+      })
+     })
+   });
+   
+  //  carritoDoc.doc(uid).delete().then(result=>{
+  //    console.log("Result",result)
+  //  }).catch(err=>{
+  //    console.log("Error",err)
+  //  });
+ }
 
   
 }

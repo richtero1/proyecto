@@ -80,7 +80,8 @@ export class AuthService {
          apellido: value.apellido,
          email: value.email,
          password: value.password,
-         uid: user.user.uid
+         uid: user.user.uid,
+         admin: false
        })
 
        this.afs.collection("carritos").doc(user.user.uid).set({
@@ -117,27 +118,6 @@ export class AuthService {
     }).catch(err=> console.error(err.message));
     
   }
-
-
-    ///// Role-based Authorization //////
-
-
-    canDelete(user: User): boolean {
-      const allowed = ['admin']
-      return this.checkAuthorization(user, allowed)
-    }
-
-
-    // determines if user has matching role
-    private checkAuthorization(user: User, allowedRoles: string[]): boolean {
-      if (!user) return false
-      for (const role of allowedRoles) {
-        if ( user.roles[role] ) { 
-          return true
-    }
-  }
-  return false
-}
 
 
 }

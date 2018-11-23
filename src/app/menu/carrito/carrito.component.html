@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-3" *ngIf="carrito?.length > 0; else carritoVacio">
   <div class="row">
     <div class="col-sm-6">
         <h2>Carrito </h2>
@@ -48,10 +48,13 @@
           
                 </td>
                 
-                <td>
-                    <a class="btn btn-primary btn-circle btn" data-toggle="modal" href="#{{cart.nombre}}" role="button" >
-                        <i class="fa fa-plus"></i>
-                    </a>
+                <td *ngIf="cart.extras?.length > 0; else noExtras">
+                
+                      <a class="btn btn-primary btn-circle btn" data-toggle="modal" href="#{{cart.nombre}}" role="button" >
+                          <i class="fa fa-plus"></i>
+                      </a>
+                  
+                    
 
                                    <!-- The Modal -->
            <div class="modal fade" id="{{cart.nombre}}">
@@ -67,9 +70,9 @@
             
                    <div class="modal-body">
                           <form>
-                                  <div class="custom-control custom-checkbox" *ngFor="let ing of cart.ingredientes" >
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-{{ing}}" name="example1" >
-                                    <label class="custom-control-label" for="customCheck-{{ing}}">{{ing}}</label>
+                                  <div class="custom-control custom-checkbox" *ngFor="let extra of cart.extras" >
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-{{extra}}" name="example1" >
+                                    <label class="custom-control-label" for="customCheck-{{extra}}">{{extra}}</label>
                                     <br>
                                   </div>
                           </form>
@@ -93,3 +96,12 @@
           </tbody>
     </table>
 </div>
+
+<ng-template #noExtras>
+  <br><br>
+  <b>Esta Comida no tiene extras</b>
+</ng-template>
+
+<ng-template #carritoVacio>
+   <h3>No ha Agregado nada a su Carrito</h3>
+</ng-template>

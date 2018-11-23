@@ -16,7 +16,7 @@
     
     <br>
   </form>
-  <button [disabled]="usuarioForm.value.password2!=usuarioForm.value.password3 || !usuarioForm.valid" class="btn btn-success" style="position:relative; left: 40%; background-color:#610b0b; color:white;" data-toggle="modal" data-target="#Modal" (click)="CambiarContrasena()">Guardar Cambios</button>
+  <button [disabled]="usuarioForm.value.password2!=usuarioForm.value.password3 || !usuarioForm.valid" class="btn btn-danger" style="position:relative; left: 40%; " data-toggle="modal" data-target="#Modal" (click)="CambiarContrasena()">Guardar Cambios</button>
 
 
 </div>    

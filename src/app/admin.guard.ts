@@ -17,7 +17,7 @@ export class AdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       return this.auth.user.pipe(
         take(1), //exclusion mutua solo puede haber uno en el mismo momento
-        map(user => user && user.roles.admin ? true : false),
+        map(user => user && user.admin ? true : false),
         tap(isAdmin => {
           if (!isAdmin) {
             console.log('Acceso negado, solo Admins');

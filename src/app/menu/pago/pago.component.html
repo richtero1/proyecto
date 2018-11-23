@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Resumen de su Orden</h4>
                     <hr>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" *ngIf="carrito?.length>0; else Vacio">
                         <thead>
                             <tr class="text-center">
                                 <th >Imagen</th>
@@ -27,8 +27,8 @@
                                 </tr>
                         </tbody>
                     </table>
-                    <div class="text-center">
-                        <button class="btn btn-danger" (click)="eliminarCarrito()">Eliminar Compra</button>
+                    <div class="text-center" *ngIf="carrito?.length>0">
+                        <button class="btn btn-danger" (click)="vaciarCarrito()">Eliminar Compra</button>
                     </div>
                 </div>
             </div>
@@ -72,8 +72,9 @@
                                 <label>Telefono:</label>
                                 <input type="number" class="form-control" placeholder="Ingrese su Telefono" required>
                         </div>
-                        <div class="text-center">
-                                <ngx-paypal [config]="payPalConfig"></ngx-paypal> 
+                        <div class="text-center">    
+                            
+                            <div id="paypal-checkout-btn"></div>
                         </div>
                     </form>
                 </div>
@@ -84,6 +85,11 @@
     
     
 </div>
+
+
+<ng-template #Vacio>
+    <h4>No tiene nada en el carrito</h4>
+</ng-template>
 
 
 
