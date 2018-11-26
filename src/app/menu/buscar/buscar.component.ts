@@ -57,7 +57,7 @@ export class BuscarComponent implements OnInit {
 
     this.auth.user.subscribe(user=>{
       this.user=user;
-      console.log(user);
+      
     })
   }
 

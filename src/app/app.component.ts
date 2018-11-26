@@ -10,7 +10,7 @@ export class AppComponent {
 	
   ngOnInit() {
     
-      console.log("4");
+      
   
   }
 }

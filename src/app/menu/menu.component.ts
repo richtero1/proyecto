@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from 'src/app/models/user';
 
-
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -11,7 +9,7 @@ import { User } from 'src/app/models/user';
 })
 export class MenuComponent implements OnInit {
 
-  
+  isCollapsed = true;
 
   user : User; 
    
@@ -21,11 +19,9 @@ export class MenuComponent implements OnInit {
       this.user=user;
       
     })
-  
   }
-
 
   ngOnInit() {
-  }
 
+  }
 }

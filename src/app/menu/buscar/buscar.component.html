@@ -6,7 +6,7 @@
     <br>
 
     
-    <div *ngIf="comidas.length > 1; else noComida">
+    <div *ngIf="comidas?.length > 1; else noComida">
         <table class="table table-bordered shadow table-hover">
           <thead>
               <tr>
@@ -19,9 +19,9 @@
                   <th>
                     Precio
                   </th>
-                  <th>
+                  <!-- <th>
                     Extras
-                  </th>
+                  </th> -->
                   <th>
                     Añadir a Carrito
                   </th>
@@ -39,7 +39,7 @@
             <td *ngIf="comida.disponibilidad==true">
               {{comida.precio}} $
             </td>
-            <td *ngIf="comida.disponibilidad==true">
+            <!-- <td *ngIf="comida.disponibilidad==true">
               <form>
                 <div class="custom-control custom-checkbox" *ngFor="let extra of comida.extras">
                   <input type="checkbox" class="custom-control-input" id="customCheck-{{extra}}" name="example1" >
@@ -47,7 +47,7 @@
                   <br>
                 </div>
         </form> 
-            </td>
+            </td> -->
             <td *ngIf="comida.disponibilidad==true">
                 <button class="btn btn-success btn-circle btn" type="button" >
                     <i class="fa fa-plus" (click)="addCarrito(comida)"></i> 

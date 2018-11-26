@@ -44,7 +44,7 @@ body { background: navy !important; }
     background-color: rgba(217,83,79);
 }
 
-.flex-container {
+/* .flex-container {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -55,7 +55,6 @@ body { background: navy !important; }
     display: -webkit-flex;
     display: flex;
     
-    -webkit-flex-flow: row wrap;
     justify-content: space-around;
   }
   
@@ -71,4 +70,4 @@ body { background: navy !important; }
     font-weight: bold;
     font-size: 3em;
     text-align: center;
-  }
+  } */

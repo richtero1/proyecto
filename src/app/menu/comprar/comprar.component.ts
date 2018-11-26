@@ -4,7 +4,6 @@ import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_di
 import { Comida } from '../../models/comida'
 import { ComidaService } from '../../services/comida.service'
 
-
 import { CarritoService } from '../../services/carrito.service';
 
 import { Subject } from 'rxjs/Subject';
@@ -13,7 +12,9 @@ import { Observable } from 'rxjs/Rx';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, Form } from '@angular/forms';
+
+import * as $ from 'jquery';
 
 
 @Component({
@@ -24,7 +25,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class ComprarComponent implements OnInit {
   
   comidas: Comida[];
-
 
   comida: Comida;
 
@@ -44,6 +44,9 @@ export class ComprarComponent implements OnInit {
  
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
+
+  extra = document.createElement("extra");
+  extras: boolean[] = [];
 
   constructor(public comidaService : ComidaService, public carritoService : CarritoService, public afs : AngularFirestore, public auth: AuthService, public fb: FormBuilder) {
 
@@ -106,6 +109,8 @@ export class ComprarComponent implements OnInit {
   addCarrito(comida :Comida){
     this.carritoService.addComida(this.user.uid,comida);
 
+    
+
   }
 
   addToForm(){
@@ -117,6 +122,11 @@ export class ComprarComponent implements OnInit {
     
   }
 
-  
+
+  modifyPrecio(precio : number){
+    
+  }
 
 }
+
+

@@ -8,8 +8,6 @@ import { CarritoService } from '../../services/carrito.service';
 import { User } from '../../models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { of } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare let paypal: any;
 
@@ -79,6 +77,10 @@ export class PagoComponent implements OnInit, AfterViewChecked {
     this.carritoService.vaciarCarrito(this.userKey);
   }
 
+  agregarAHistorial(){
+    this.carritoService.AgregaraHistorial(this.userKey, this.carrito);
+  }
+
   paypalConfig = {
     env: 'sandbox',
     client: {
@@ -101,7 +103,11 @@ export class PagoComponent implements OnInit, AfterViewChecked {
         return actions.payment.execute().then((payment) => {
             window.alert('Pago Completado!');
             //Do something when payment is successful.
+            this.agregarAHistorial();
             this.vaciarCarrito();
+            this.costo=0;
+            this.total=0;
+            this.impuestos=0;
         })
     }
   };

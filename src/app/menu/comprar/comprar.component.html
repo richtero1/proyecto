@@ -1,62 +1,59 @@
-<h2>Tabla de Productos</h2>
-<p>Typee el producto que quiere buscar</p>  
-
-<input class="form-control shadow" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchterm" (keydown)="search($event)">
-
-<br><br>
-<div class="row" >
-    
-        <div class="col-sm-6" *ngFor="let comida of comidas">
-            <div *ngIf="comida.disponibilidad; else template">
-                <div class="card shadow" style="width:90%; height: 90%">
-                    <div class="card-body">
-                        <div class="text-center">
-                                <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
-                                <hr>
-                                <h4 class="card-title">{{ comida.nombre }}</h4>
-                                <p class="card-text">{{ comida.precio }} $</p>
-                                <form (click)="selectedComida(comida)">
+<div class="container">
+        <h2>Tabla de Productos</h2>
+        <p>Typee el producto que quiere buscar</p>  
+        
+        <input class="form-control shadow" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchterm" (keydown)="search($event)">
+        
+        <br><br>
+        <div class="row" >
             
-                                    <!-- <div *ngIf="comida==comidaselected">
-                                            <label for="">{{comida.nombre}}</label>
-                                    </div> -->
-                                    
-                                    
-                                    <!-- <input type="submit" class="btn btn-primary" > -->
-                                </form>
-                                <button (click)="addCarrito(comida)" class="btn btn-primary " >Añadir a carrito</button>
+                <div class="col-sm-6" *ngFor="let comida of comidas">
+                    <div *ngIf="comida.disponibilidad; else template">
+                        <div class="card shadow" style="width:90%; height: 90%">
+                            <div class="card-body">
+                                <div class="text-center">
+                                        <img class="card-img-top" src={{comida.photoUrl}} alt="Card image" >
+                                        <hr>
+                                        <h4 class="card-title">{{ comida.nombre }}</h4>
+                                        <p class="card-text">{{ comida.precio }} $</p>
+                                        <form (click)="selectedComida(comida)">
+                    
+                                         
+                                        </form>
+                                        <button (click)="addCarrito(comida)" class="btn btn-primary " >Añadir a carrito</button>
+                                        
+                                        <br><br>
+                                </div>
                                 
-                                <br><br>
-                        </div>
-                        
-                        <div class="input-group mb-3" >
-                            <div class="col-sm-2"><a class="btn btn-primary btn-circle btn" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <i  class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-4"> 
-                                <h5>      Extra</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse" id="{{comida.nombre}}">
-                        <div class="card-text">
-                            
-                            <form [formGroup]="extraForm">
-                                    <div class="custom-control custom-checkbox" *ngFor="let extra of comida.extras">  
-                                      <input type="checkbox" class="custom-control-input" id="customCheck-{{extra}}" name="example1" >
-                                      <label class="custom-control-label" for="customCheck-{{extra}}" style="position: relative;left:15%;">{{extra}}</label>
-                                      <br>
+                                <!-- <div class="input-group mb-3" *ngIf="comida?.extras?.length>0">
+                                    <div class="col-sm-2"><a class="btn btn-primary btn-circle btn" data-toggle="collapse" href="#{{comida.nombre}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            <i  class="fa fa-plus"></i>
+                                        </a>
                                     </div>
-                            </form> 
+                                    <div class="col-sm-4" > 
+                                        <h5>      Extra</h5>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <!-- <div class="collapse" id="{{comida.nombre}}">
+                                <div class="card-text">
+                                    <div class="form-check text-center" *ngFor="let extra of comida.extras">  
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" (change)="modifyPrecio(comida.precio)" name="{{extra}}">{{extra }}
+                                            </label>
+                                        </div>
+                                        
+                                    
+                                </div>
+                            </div> -->
                         </div>
                     </div>
+                    
+                    <br><br><br>
                 </div>
             </div>
-            
-            <br><br><br>
-        </div>
-    </div>
+</div>
+
 
 <ng-template #noComidas>
         <h5>NO hay comidas disponibles.</h5>

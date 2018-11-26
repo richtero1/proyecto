@@ -36,6 +36,10 @@ import { HomeComponent } from './menu/home/home.component';
 import { environment } from '../environments/environment.prod';
 import { LoginComponent } from './login/login.component';
 
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ExtrasComponent } from './menu/comprar/extras/extras.component';
+
 
 
 
@@ -80,7 +84,8 @@ const appRoutes: Routes = [
     ComprasComponent,
     ModificarComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ExtrasComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +93,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxPayPalModule,
+    CollapseModule,
+    CarouselModule,
     
     AngularFireModule.initializeApp(environment.firebase, 'angular-fs'),    
     AngularFirestoreModule,

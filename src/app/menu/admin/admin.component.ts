@@ -13,7 +13,7 @@ import { ComidaService } from '../../services/comida.service'
 export class AdminComponent implements OnInit {
 
   comidas: Comida[];
-  editState: boolean = false;
+  editState: boolean = false; 
   comidaToEdit: Comida;
 
   comida: Comida = {

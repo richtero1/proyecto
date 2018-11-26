@@ -12,6 +12,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { AuthService } from '../services/auth.service';
+import { Carrito } from '../models/carrito';
+import { forEach } from '@angular/router/src/utils/collection';
+import { Orden } from '../models/orden';
 
 
 @Injectable({
@@ -23,6 +26,10 @@ export class CarritoService {
   carrito: Observable<Comida[]>;
   carritoDoc: AngularFirestoreDocument<Comida>;
 
+  compraCollection: AngularFirestoreCollection<Comida>;
+  compra: Observable<Comida[]>;
+  compraDoc: AngularFirestoreDocument<Comida>;
+
   constructor(public afs:AngularFirestore, public auth: AuthService ) {
     
   }
@@ -30,6 +37,10 @@ export class CarritoService {
   getCarrito(id: string) {
 
     return this.afs.collection('carritos').doc(id).collection('carrito').snapshotChanges();
+  }
+
+  getCompra(id: string) {
+    return this.afs.collection<Orden>('compras').doc(id).collection('compras').snapshotChanges();
   }
 
   
@@ -63,13 +74,24 @@ export class CarritoService {
       })
      })
    });
-   
-  //  carritoDoc.doc(uid).delete().then(result=>{
-  //    console.log("Result",result)
-  //  }).catch(err=>{
-  //    console.log("Error",err)
-  //  });
+
  }
 
+ addtoCompra(id: string, comida: Comida) {
+  this.compraDoc = this.afs.doc<Comida>(`compras/${id}`);
+ 
+ this.compraDoc.collection('compra').add(comida).then(data=>{
+   console.log("Result", data)
+ });
+
+}
+
+ AgregaraHistorial(uid: string, carrito: Comida[]){
+
+  carrito.forEach(comida => {
+    this.addtoCompra(uid, comida);
+  });
+
+}
   
 }

@@ -3,53 +3,37 @@
 </div>
 
 <div class="container" style="margin-top:90px">
-  
     <div class="row ">
-
         <div class="col-sm-3">
-            <div class="row">
-                <div class="col-sm-12">
-                    <nav class="navbar navbar-light bg-light">
+                    <nav class="navbar navbar-light">
                         
-                            <div >
-                                    <div class="card-body">
-                                        <h4 class="card-title">Dashboard</h4>
-                                        <p class="card-text">Que quiere hacer</p>
-            
-                                        <ul class="nav nav-pills flex-column list-group list-group-flush ">
-                                                 <li class="nav-item pill-1 list-group-item">
-                                                        <a class="nav-link card-link " routerLink = "/menu/comprar" 
-                                                        routerLinkActive= "active" >Menu</a>
-                                                </li> 
-                                                <li class="nav-item pill-2 list-group-item ">
-                                                        <a class="nav-link card-link" routerLink = "/menu/buscar" 
-                                                        routerLinkActive= "active">Buscar</a>
-                                                </li>
-                                                <li class="nav-item pill-3 list-group-item ">
-                                                        <a class="nav-link card-link" routerLink = "/menu/carrito" 
-                                                        routerLinkActive= "active" >Carrito</a>
-                                                </li>
-                                               
-                                                <li class="nav-item pill-5 list-group-item " >
-                                                            <a class="nav-link card-link"  routerLink = "/menu/admin"
-                                                            routerLinkActive= "active" >Administrador</a>
-                                                </li>
-            
-                                              </ul>
-                                    </div>
-                                </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Dashboard</h4>
+                                <p class="card-text">Que quiere hacer</p>
+                                <ul class="nav nav-pills list-group list-group-flush ">
+                                    <li class="nav-item pill-1 list-group-item">
+                                        <a class="nav-link card-link " routerLink = "/menu/comprar" routerLinkActive= "active" >Menu</a>
+                                    </li> 
+                                    <li class="nav-item pill-2 list-group-item ">
+                                        <a class="nav-link card-link" routerLink = "/menu/buscar" routerLinkActive= "active">Buscar</a>
+                                    </li>
+                                    <li class="nav-item pill-3 list-group-item ">
+                                        <a class="nav-link card-link" routerLink = "/menu/carrito" routerLinkActive= "active" >Carrito</a>
+                                    </li>
+                                    <li class="nav-item pill-5 list-group-item " *ngIf="user?.admin">
+                                        <a class="nav-link card-link"  routerLink = "/menu/admin" routerLinkActive= "active" >Administrador</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </nav>
-                    
                     <hr class="d-sm-none">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-9" id="body">
-            <router-outlet></router-outlet>
+                
             
         </div>
-
+        <div class="col-sm-8" id="body">
+            <router-outlet></router-outlet>   
+        </div>
     </div>
-
 </div>

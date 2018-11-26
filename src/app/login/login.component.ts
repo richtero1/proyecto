@@ -59,8 +59,6 @@ export class LoginComponent implements OnInit {
      this.authservice.signIn(this.loginForm.value);
 
      var User= this.afAuth.auth.currentUser;
-
-     console.log(User +" CONSOLE LOG");
  
    }
  
